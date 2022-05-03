@@ -218,7 +218,7 @@ namespace FishShop
         {
             InteractionDB interactionDB = new InteractionDB("Наименование товара",
                                                             "Количество",
-                                                            "Цена за штуку");
+                                                            "Цена за штуку", conSales);
             interactionDB.ShowDialog();
         }
     }

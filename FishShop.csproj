@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="loader.xml" />
+    <Content Include="PrimaryKey.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,7 +35,7 @@ namespace FishShop
                 String login = textBox1.Text;
                 String password = textBox2.Text;
 
-                bool start = parser.pars(login,password);
+                bool start = parser.parsLoader(login,password);
 
                 if (start) 
                 {

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+
+<primarykey>
+  <buyer>
+    6
+  </buyer>
+  <partners>
+    6
+  </partners>
+  <products>
+    6
+  </products>
+  <sales>
+    0
+  </sales>
+  <suppliers>
+    0
+  </suppliers>
+</primarykey>

@@ -10,7 +10,7 @@ namespace FishShop
 {
     class parser
     {
-        public static bool pars(String login, String password) 
+        public static bool parsLoader(String login, String password) 
         {
             var filepath = "loader.xml";
             var pid = "3";
@@ -42,6 +42,27 @@ namespace FishShop
             // Закрываем поток  
             fs.Close();
             return false;
+        }
+
+
+        public static int parsPrimaryKey(String nameTable)
+        {
+            var filepath = "PrimaryKey.xml";
+
+            // Объявляем и забиваем файл в документ  
+            XmlDocument xd = new XmlDocument();
+            FileStream fs = new FileStream(filepath, FileMode.Open);
+            xd.Load(fs);
+            int result = 0;
+            XmlNodeList list = xd.GetElementsByTagName("primarykey"); // Создаем и заполняем лист по тегу "user"  
+            for (int i = 0; i < list.Count; i++)
+            {
+                XmlElement count = (XmlElement)xd.GetElementsByTagName(nameTable)[i];         // Забиваем значнеие PK в переменную  
+                result = Convert.ToInt32(count.InnerText);
+            }
+            // Закрываем поток  
+            fs.Close();
+            return result;
         }
     }
 }
