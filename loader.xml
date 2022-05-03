@@ -1,12 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<users> ацук
-  <user>
-    <login>
-      root
-    </login>
-    <password>
-      root1111
-    </password>
+<users>
+  <user id="1">
+    <login>hitechlogin</login>
+    <password>qwertypassword</password>>
+  </user>
+  <user id="2">
+    <login>hitechlogin</login>
+    <password>qwertypassword</password>>
+  </user>
+  <user id="3">
+    <login>root</login>
+    <password>root1111</password>>
   </user>
 </users>

@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fish_shopDataSet.Designer.cs">
+    <Compile Include="fish_shopDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>fish_shopDataSet.xsd</DependentUpon>
+      <DependentUpon>fish_shopDataSet2.xsd</DependentUpon>
     </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
@@ -93,16 +93,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="fish_shopDataSet.xsc">
-      <DependentUpon>fish_shopDataSet.xsd</DependentUpon>
+    <None Include="fish_shopDataSet2.xsc">
+      <DependentUpon>fish_shopDataSet2.xsd</DependentUpon>
     </None>
-    <None Include="fish_shopDataSet.xsd">
+    <None Include="fish_shopDataSet2.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>fish_shopDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>fish_shopDataSet2.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="fish_shopDataSet.xss">
-      <DependentUpon>fish_shopDataSet.xsd</DependentUpon>
+    <None Include="fish_shopDataSet2.xss">
+      <DependentUpon>fish_shopDataSet2.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
