@@ -213,5 +213,13 @@ namespace FishShop
             }
             dataGridView2.ClearSelection();
         }
+
+        private void добавитьТоварToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            InteractionDB interactionDB = new InteractionDB("Наименование товара",
+                                                            "Количество",
+                                                            "Цена за штуку");
+            interactionDB.ShowDialog();
+        }
     }
 }

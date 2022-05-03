@@ -53,6 +53,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>fish_shopDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="InteractionDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InteractionDB.Designer.cs">
+      <DependentUpon>InteractionDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="InteractionDB.resx">
+      <DependentUpon>InteractionDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
