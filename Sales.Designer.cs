@@ -33,23 +33,38 @@ namespace FishShop
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
@@ -58,6 +73,47 @@ namespace FishShop
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 422);
             this.panel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button7);
+            this.panel3.Controls.Add(this.button5);
+            this.panel3.Controls.Add(this.dataGridView2);
+            this.panel3.Location = new System.Drawing.Point(4, 226);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(337, 196);
+            this.panel3.TabIndex = 4;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(199, 160);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(135, 33);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "Удалить товар";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 4);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(331, 150);
+            this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(644, 226);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(126, 52);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Покупатели";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -98,14 +154,83 @@ namespace FishShop
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 100);
+            this.panel2.Size = new System.Drawing.Size(135, 77);
             this.panel2.TabIndex = 2;
             this.panel2.Visible = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.button6);
+            this.panel4.Controls.Add(this.comboBox1);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Location = new System.Drawing.Point(569, 48);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(219, 230);
+            this.panel4.TabIndex = 3;
+            this.panel4.Visible = false;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(97, 135);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(119, 37);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "Приобрести";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(6, 86);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(195, 24);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(215, 17);
+            this.label4.TabIndex = 3;
+            this.label4.Text = " вы хотели бы его приобрести?";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(138, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "в каком количестве";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(31, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(170, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "<наименование товара>";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Вы выбрали товар";
             // 
             // textBox1
             // 
@@ -136,15 +261,15 @@ namespace FishShop
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // button4
+            // button7
             // 
-            this.button4.Location = new System.Drawing.Point(644, 226);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(126, 52);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Покупатели";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button7.Location = new System.Drawing.Point(8, 160);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(105, 33);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Купить всё";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Sales
             // 
@@ -159,10 +284,14 @@ namespace FishShop
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Sales_FormClosed);
             this.Load += new System.EventHandler(this.Sales_Load);
             this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -180,5 +309,16 @@ namespace FishShop
         private TextBox textBox1;
         private Button button3;
         private Button button4;
+        private Panel panel3;
+        private Button button5;
+        private DataGridView dataGridView2;
+        private Panel panel4;
+        private ComboBox comboBox1;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private Button button6;
+        private Button button7;
     }
 }
