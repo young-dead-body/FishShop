@@ -48,13 +48,14 @@ namespace FishShop
                                                 $"VALUES ({parser.parsPrimaryKey("products")+1},'{textBox1.Text}', {textBox2.Text}, {textBox3.Text})";
                     MySqlCommand commandUpdate = new MySqlCommand(queryUpdateQuantity, conFish_Shop);
                     commandUpdate.ExecuteNonQuery();
+                    parser.parsWritePK(parser.parsPrimaryKey("products") + 1, "products");
                     break;
-      
                 default:
                     MessageBox.Show("Непонятное завершение процесса. Обрабитесь к администратору", "ERROR");
                     //код, выполняемый если выражение не имеет ни одно из выше указанных значений
                 break;
             }
+            Close();
         }
     }
 }
