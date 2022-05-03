@@ -34,6 +34,7 @@ namespace FishShop
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
@@ -41,6 +42,10 @@ namespace FishShop
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьТоварToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьТоварToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьТоварToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьПаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
@@ -52,7 +57,7 @@ namespace FishShop
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button7 = new System.Windows.Forms.Button();
+            this.взаимодействиеСПокупателямиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -83,6 +88,16 @@ namespace FishShop
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(337, 196);
             this.panel3.TabIndex = 4;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(8, 160);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(105, 33);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Купить всё";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button5
             // 
@@ -148,9 +163,40 @@ namespace FishShop
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьТоварToolStripMenuItem,
+            this.добавитьПаToolStripMenuItem,
+            this.взаимодействиеСПокупателямиToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // добавитьТоварToolStripMenuItem
+            // 
+            this.добавитьТоварToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьТоварToolStripMenuItem1,
+            this.удалитьТоварToolStripMenuItem});
+            this.добавитьТоварToolStripMenuItem.Name = "добавитьТоварToolStripMenuItem";
+            this.добавитьТоварToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
+            this.добавитьТоварToolStripMenuItem.Text = "Взаимодействие с товарами";
+            // 
+            // добавитьТоварToolStripMenuItem1
+            // 
+            this.добавитьТоварToolStripMenuItem1.Name = "добавитьТоварToolStripMenuItem1";
+            this.добавитьТоварToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.добавитьТоварToolStripMenuItem1.Text = "Добавить товар";
+            // 
+            // удалитьТоварToolStripMenuItem
+            // 
+            this.удалитьТоварToolStripMenuItem.Name = "удалитьТоварToolStripMenuItem";
+            this.удалитьТоварToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.удалитьТоварToolStripMenuItem.Text = "Удалить товар";
+            // 
+            // добавитьПаToolStripMenuItem
+            // 
+            this.добавитьПаToolStripMenuItem.Name = "добавитьПаToolStripMenuItem";
+            this.добавитьПаToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
+            this.добавитьПаToolStripMenuItem.Text = "Взаимодействие с партнерами";
             // 
             // panel2
             // 
@@ -261,15 +307,11 @@ namespace FishShop
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // button7
+            // взаимодействиеСПокупателямиToolStripMenuItem
             // 
-            this.button7.Location = new System.Drawing.Point(8, 160);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(105, 33);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Купить всё";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.взаимодействиеСПокупателямиToolStripMenuItem.Name = "взаимодействиеСПокупателямиToolStripMenuItem";
+            this.взаимодействиеСПокупателямиToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
+            this.взаимодействиеСПокупателямиToolStripMenuItem.Text = "Взаимодействие с покупателями";
             // 
             // Sales
             // 
@@ -320,5 +362,10 @@ namespace FishShop
         private Label label1;
         private Button button6;
         private Button button7;
+        private ToolStripMenuItem добавитьТоварToolStripMenuItem;
+        private ToolStripMenuItem добавитьТоварToolStripMenuItem1;
+        private ToolStripMenuItem удалитьТоварToolStripMenuItem;
+        private ToolStripMenuItem добавитьПаToolStripMenuItem;
+        private ToolStripMenuItem взаимодействиеСПокупателямиToolStripMenuItem;
     }
 }

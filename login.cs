@@ -55,6 +55,7 @@ namespace FishShop
                     Sales sales = new Sales(con, parentForm);
                     sales.Show();
                     //========================================
+                    parentForm.WindowState = FormWindowState.Minimized;
                     Close();
                 }
                 else

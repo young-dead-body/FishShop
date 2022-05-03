@@ -32,7 +32,7 @@ namespace FishShop
         {
             //ДЛЯ ПООДКЛЮЧЕНИЯ К БД
             login login = new login(this);
-            login.Show();
+            login.ShowDialog();
          
         }
   
