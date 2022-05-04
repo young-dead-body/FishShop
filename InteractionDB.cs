@@ -34,6 +34,27 @@ namespace FishShop
             conFish_Shop = connection;
         }
 
+        public InteractionDB(string label1Text, MySqlConnection connection)
+        {
+            InitializeComponent();
+            Text = "Добавить партнера";
+            label1.Text = label1Text;
+
+            label2.Visible = false;
+            textBox2.Visible = false;
+            
+            label3.Visible = false;
+            textBox3.Visible = false;
+            
+            label4.Visible = false;
+            textBox4.Visible = false;
+            dateTimePicker1.Visible = false;
+
+            button1.Text = "Добавить";
+            button2.Text = "Отменить";
+            conFish_Shop = connection;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
@@ -41,14 +62,21 @@ namespace FishShop
 
         private void button1_Click(object sender, EventArgs e)
         {
+            String queryUpdateQuantity;
+            MySqlCommand commandUpdate;
             switch (Text)
             {
                 case "Добавить товар":
-                    String queryUpdateQuantity = $"INSERT INTO PRODUCTS (ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM) " +
-                                                $"VALUES ({parser.parsPrimaryKey("products")+1},'{textBox1.Text}', {textBox2.Text}, {textBox3.Text})";
-                    MySqlCommand commandUpdate = new MySqlCommand(queryUpdateQuantity, conFish_Shop);
+                    queryUpdateQuantity = $"INSERT INTO PRODUCTS (NAME_PRODUCT, QUANTITY, SUM) " +
+                                                $"VALUES ('{parser.parserText(textBox1.Text)}', {textBox2.Text}, {textBox3.Text})";
+                    commandUpdate = new MySqlCommand(queryUpdateQuantity, conFish_Shop);
                     commandUpdate.ExecuteNonQuery();
-                    parser.parsWritePK(parser.parsPrimaryKey("products") + 1, "products");
+                    break;
+                case "Добавить партнера":
+                    queryUpdateQuantity = $"INSERT INTO PARTNERS (NAME_PARTNERS) " +
+                                                $"VALUES ('{parser.parserText(textBox1.Text)}')";
+                    commandUpdate = new MySqlCommand(queryUpdateQuantity, conFish_Shop);
+                    commandUpdate.ExecuteNonQuery();
                     break;
                 default:
                     MessageBox.Show("Непонятное завершение процесса. Обрабитесь к администратору", "ERROR");

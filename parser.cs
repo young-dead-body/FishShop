@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace FishShop
 {
-    class parser
+    public class parser
     {
         public static bool parsLoader(String login, String password) 
         {
@@ -45,42 +47,21 @@ namespace FishShop
         }
 
 
-        public static int parsPrimaryKey(String nameTable)
+        public static String parserText(String str1)
         {
-            var filepath = "PrimaryKey.xml";
-
-            // Объявляем и забиваем файл в документ  
-            XmlDocument doc = new XmlDocument();
-            FileStream fs = new FileStream(filepath, FileMode.Open);
-            doc.Load(fs);
-            int result = 0;
-            //XmlNodeList list = doc.GetElementsByTagName(nameTable); // Создаем и заполняем лист по тегу "user"  
-
-            XmlNodeList xmlNodeList = doc.GetElementsByTagName("primarykey");
-
-            for (int i = 0; i < xmlNodeList.Count; i++)
+            String str2 = "";
+            for (int i = 0; i < str1.Length; i++)
             {
-                XmlElement pk = (XmlElement)doc.GetElementsByTagName("products")[i];      // Забиваем login в переменную  
-                result = Convert.ToInt32(pk.InnerText);
+                if (str1[i] == '\'')
+                {
+                    str2 += "\\\"";
+                }
+                else
+                {
+                    str2 += str1[i];
+                }
             }
-            // Закрываем поток  
-            fs.Close();
-            return result;
-        }
-
-
-        public static void parsWritePK(int a, String nameTable) 
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("PrimaryKey.xml");
-            foreach (XmlNode xn in doc.GetElementsByTagName("primarykey"))
-            {
-                    XmlNode PK = doc.CreateElement(nameTable);
-                    PK.InnerText = a.ToString();
-                    xn.AppendChild(PK);
-                    break;
-            }
-            doc.Save("PrimaryKey.xml");
+            return str2;
         }
     }
 }

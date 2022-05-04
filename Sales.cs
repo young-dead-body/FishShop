@@ -221,5 +221,11 @@ namespace FishShop
                                                             "Цена за штуку", conSales);
             interactionDB.ShowDialog();
         }
+
+        private void добавитьПартнераToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InteractionDB interactionDB = new InteractionDB("Наименование партнера", conSales);
+            interactionDB.ShowDialog();
+        }
     }
 }

@@ -45,7 +45,14 @@ namespace FishShop
             this.добавитьТоварToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьТоварToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьТоварToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьТоварToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьПаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьПартнераToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьПартнераToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьИнформациюОПартнереToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.взаимодействиеСПокупателямиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьПокупателяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьИнформациюОПокупателеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
@@ -57,13 +64,6 @@ namespace FishShop
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.взаимодействиеСПокупателямиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьТоварToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьПартнераToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьПартнераToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьИнформациюОПартнереToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьПокупателяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьИнформациюОПокупателеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -197,8 +197,14 @@ namespace FishShop
             // удалитьТоварToolStripMenuItem
             // 
             this.удалитьТоварToolStripMenuItem.Name = "удалитьТоварToolStripMenuItem";
-            this.удалитьТоварToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.удалитьТоварToolStripMenuItem.Size = new System.Drawing.Size(325, 26);
             this.удалитьТоварToolStripMenuItem.Text = "Удалить товар";
+            // 
+            // изменитьТоварToolStripMenuItem
+            // 
+            this.изменитьТоварToolStripMenuItem.Name = "изменитьТоварToolStripMenuItem";
+            this.изменитьТоварToolStripMenuItem.Size = new System.Drawing.Size(325, 26);
+            this.изменитьТоварToolStripMenuItem.Text = "Изменить информацию о товаре";
             // 
             // добавитьПаToolStripMenuItem
             // 
@@ -209,6 +215,46 @@ namespace FishShop
             this.добавитьПаToolStripMenuItem.Name = "добавитьПаToolStripMenuItem";
             this.добавитьПаToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
             this.добавитьПаToolStripMenuItem.Text = "Взаимодействие с партнерами";
+            // 
+            // добавитьПартнераToolStripMenuItem
+            // 
+            this.добавитьПартнераToolStripMenuItem.Name = "добавитьПартнераToolStripMenuItem";
+            this.добавитьПартнераToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
+            this.добавитьПартнераToolStripMenuItem.Text = "Добавить партнера";
+            this.добавитьПартнераToolStripMenuItem.Click += new System.EventHandler(this.добавитьПартнераToolStripMenuItem_Click);
+            // 
+            // удалитьПартнераToolStripMenuItem
+            // 
+            this.удалитьПартнераToolStripMenuItem.Name = "удалитьПартнераToolStripMenuItem";
+            this.удалитьПартнераToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
+            this.удалитьПартнераToolStripMenuItem.Text = "Удалить партнера";
+            // 
+            // изменитьИнформациюОПартнереToolStripMenuItem
+            // 
+            this.изменитьИнформациюОПартнереToolStripMenuItem.Name = "изменитьИнформациюОПартнереToolStripMenuItem";
+            this.изменитьИнформациюОПартнереToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
+            this.изменитьИнформациюОПартнереToolStripMenuItem.Text = "Изменить информацию о партнере";
+            // 
+            // взаимодействиеСПокупателямиToolStripMenuItem
+            // 
+            this.взаимодействиеСПокупателямиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьПокупателяToolStripMenuItem,
+            this.изменитьИнформациюОПокупателеToolStripMenuItem});
+            this.взаимодействиеСПокупателямиToolStripMenuItem.Name = "взаимодействиеСПокупателямиToolStripMenuItem";
+            this.взаимодействиеСПокупателямиToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
+            this.взаимодействиеСПокупателямиToolStripMenuItem.Text = "Взаимодействие с покупателями";
+            // 
+            // добавитьПокупателяToolStripMenuItem
+            // 
+            this.добавитьПокупателяToolStripMenuItem.Name = "добавитьПокупателяToolStripMenuItem";
+            this.добавитьПокупателяToolStripMenuItem.Size = new System.Drawing.Size(356, 26);
+            this.добавитьПокупателяToolStripMenuItem.Text = "Добавить покупателя";
+            // 
+            // изменитьИнформациюОПокупателеToolStripMenuItem
+            // 
+            this.изменитьИнформациюОПокупателеToolStripMenuItem.Name = "изменитьИнформациюОПокупателеToolStripMenuItem";
+            this.изменитьИнформациюОПокупателеToolStripMenuItem.Size = new System.Drawing.Size(356, 26);
+            this.изменитьИнформациюОПокупателеToolStripMenuItem.Text = "Изменить информацию о покупателе";
             // 
             // panel2
             // 
@@ -318,51 +364,6 @@ namespace FishShop
             this.dataGridView1.Size = new System.Drawing.Size(558, 408);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // взаимодействиеСПокупателямиToolStripMenuItem
-            // 
-            this.взаимодействиеСПокупателямиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьПокупателяToolStripMenuItem,
-            this.изменитьИнформациюОПокупателеToolStripMenuItem});
-            this.взаимодействиеСПокупателямиToolStripMenuItem.Name = "взаимодействиеСПокупателямиToolStripMenuItem";
-            this.взаимодействиеСПокупателямиToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
-            this.взаимодействиеСПокупателямиToolStripMenuItem.Text = "Взаимодействие с покупателями";
-            // 
-            // изменитьТоварToolStripMenuItem
-            // 
-            this.изменитьТоварToolStripMenuItem.Name = "изменитьТоварToolStripMenuItem";
-            this.изменитьТоварToolStripMenuItem.Size = new System.Drawing.Size(325, 26);
-            this.изменитьТоварToolStripMenuItem.Text = "Изменить информацию о товаре";
-            // 
-            // добавитьПартнераToolStripMenuItem
-            // 
-            this.добавитьПартнераToolStripMenuItem.Name = "добавитьПартнераToolStripMenuItem";
-            this.добавитьПартнераToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
-            this.добавитьПартнераToolStripMenuItem.Text = "Добавить партнера";
-            // 
-            // удалитьПартнераToolStripMenuItem
-            // 
-            this.удалитьПартнераToolStripMenuItem.Name = "удалитьПартнераToolStripMenuItem";
-            this.удалитьПартнераToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
-            this.удалитьПартнераToolStripMenuItem.Text = "Удалить партнера";
-            // 
-            // изменитьИнформациюОПартнереToolStripMenuItem
-            // 
-            this.изменитьИнформациюОПартнереToolStripMenuItem.Name = "изменитьИнформациюОПартнереToolStripMenuItem";
-            this.изменитьИнформациюОПартнереToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
-            this.изменитьИнформациюОПартнереToolStripMenuItem.Text = "Изменить информацию о партнере";
-            // 
-            // добавитьПокупателяToolStripMenuItem
-            // 
-            this.добавитьПокупателяToolStripMenuItem.Name = "добавитьПокупателяToolStripMenuItem";
-            this.добавитьПокупателяToolStripMenuItem.Size = new System.Drawing.Size(356, 26);
-            this.добавитьПокупателяToolStripMenuItem.Text = "Добавить покупателя";
-            // 
-            // изменитьИнформациюОПокупателеToolStripMenuItem
-            // 
-            this.изменитьИнформациюОПокупателеToolStripMenuItem.Name = "изменитьИнформациюОПокупателеToolStripMenuItem";
-            this.изменитьИнформациюОПокупателеToolStripMenuItem.Size = new System.Drawing.Size(356, 26);
-            this.изменитьИнформациюОПокупателеToolStripMenuItem.Text = "Изменить информацию о покупателе";
             // 
             // Sales
             // 
