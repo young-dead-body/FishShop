@@ -26,8 +26,20 @@ namespace FishShop
             label1.Text = label1Text;
             label2.Text = label2Text;
             label3.Text = label3Text;
-            label4.Visible = false;
-            textBox4.Visible = false;
+            dateTimePicker1.Visible = false;
+            button1.Text = "Добавить";
+            button2.Text = "Отменить";
+            conFish_Shop = connection;
+        }
+
+        public InteractionDB(string label1Text, string label2Text, MySqlConnection connection)
+        {
+            InitializeComponent();
+            Text = "Добавить покупателя";
+            label1.Text = label1Text;
+            label2.Text = label2Text;
+            label3.Visible = false;
+            textBox3.Visible = false;
             dateTimePicker1.Visible = false;
             button1.Text = "Добавить";
             button2.Text = "Отменить";
@@ -46,8 +58,6 @@ namespace FishShop
             label3.Visible = false;
             textBox3.Visible = false;
             
-            label4.Visible = false;
-            textBox4.Visible = false;
             dateTimePicker1.Visible = false;
 
             button1.Text = "Добавить";
@@ -75,6 +85,16 @@ namespace FishShop
                 case "Добавить партнера":
                     queryUpdateQuantity = $"INSERT INTO PARTNERS (NAME_PARTNERS) " +
                                                 $"VALUES ('{parser.parserText(textBox1.Text)}')";
+                    commandUpdate = new MySqlCommand(queryUpdateQuantity, conFish_Shop);
+                    commandUpdate.ExecuteNonQuery();
+                    break;
+                case "Добавить покупателя":
+                    String date = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+
+                    queryUpdateQuantity = $"INSERT INTO BUYER (FIO, PHONE_NUMBER, DATE_BUYER) " +
+                                                $"VALUES ('{textBox1.Text}', " +
+                                                $"'{textBox2.Text}', " +
+                                                $"'{date}')";
                     commandUpdate = new MySqlCommand(queryUpdateQuantity, conFish_Shop);
                     commandUpdate.ExecuteNonQuery();
                     break;

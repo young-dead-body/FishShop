@@ -174,7 +174,7 @@ namespace FishShop
             this.добавитьПаToolStripMenuItem,
             this.взаимодействиеСПокупателямиToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // добавитьТоварToolStripMenuItem
@@ -249,6 +249,7 @@ namespace FishShop
             this.добавитьПокупателяToolStripMenuItem.Name = "добавитьПокупателяToolStripMenuItem";
             this.добавитьПокупателяToolStripMenuItem.Size = new System.Drawing.Size(356, 26);
             this.добавитьПокупателяToolStripMenuItem.Text = "Добавить покупателя";
+            this.добавитьПокупателяToolStripMenuItem.Click += new System.EventHandler(this.добавитьПокупателяToolStripMenuItem_Click);
             // 
             // изменитьИнформациюОПокупателеToolStripMenuItem
             // 

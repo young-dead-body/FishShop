@@ -12,7 +12,7 @@ namespace FishShop
         public Sales()
         {
             InitializeComponent();
-            //  panel3.Visible = false;
+            panel3.Visible = false;
         }
 
         Form parentForm;
@@ -24,7 +24,7 @@ namespace FishShop
         {
             InitializeComponent();
             ConSales = con;
-            // panel3.Visible = false;
+            panel3.Visible = false;
             parentForm = form;
         }
 
@@ -44,14 +44,6 @@ namespace FishShop
 
         }
 
-
-
-        /*private void button3_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            parentForm.Text = "Главное меню";
-            conSales.Close();
-        }*/
         String table;
         String tableLike;
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -71,11 +63,21 @@ namespace FishShop
         }
 
         int numberProducts = 0;
+
         private void button6_Click(object sender, EventArgs e)
         {
             panel4.Visible = false;
+
+            int kolvo = 0;
+            if (comboBox1.SelectedIndex == -1){
+                kolvo = 1;
+            }
+            else {
+                kolvo = comboBox1.SelectedIndex;
+            }
+
             dataGridView2.Rows.Add(new Object[] { dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value,
-                                                comboBox1.SelectedItem});
+                                                    kolvo});
             numberProducts++;
         }
 
@@ -110,6 +112,7 @@ namespace FishShop
             panel1.Visible = true;
             panel2.Visible = false;
             panel4.Visible = false;
+            panel3.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -211,7 +214,8 @@ namespace FishShop
                 MySqlCommand commandUpdate = new MySqlCommand(queryUpdateQuantity, conSales);
                 commandUpdate.ExecuteNonQuery();
             }
-            dataGridView2.ClearSelection();
+            dataGridView2.Rows.Clear();
+            panel3.Visible = false;
         }
 
         private void добавитьТоварToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -225,6 +229,14 @@ namespace FishShop
         private void добавитьПартнераToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InteractionDB interactionDB = new InteractionDB("Наименование партнера", conSales);
+            interactionDB.ShowDialog();
+        }
+
+        private void добавитьПокупателяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InteractionDB interactionDB = new InteractionDB("ФИО",
+                                                            "Номер телефона", 
+                                                            conSales);
             interactionDB.ShowDialog();
         }
     }
