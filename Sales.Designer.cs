@@ -64,6 +64,10 @@ namespace FishShop
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -71,6 +75,7 @@ namespace FishShop
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,9 +85,9 @@ namespace FishShop
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 422);
+            this.panel1.Size = new System.Drawing.Size(800, 420);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -163,7 +168,7 @@ namespace FishShop
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -174,7 +179,7 @@ namespace FishShop
             this.добавитьПаToolStripMenuItem,
             this.взаимодействиеСПокупателямиToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // добавитьТоварToolStripMenuItem
@@ -260,13 +265,15 @@ namespace FishShop
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Location = new System.Drawing.Point(0, 28);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 30);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(135, 77);
+            this.panel2.Size = new System.Drawing.Size(800, 420);
             this.panel2.TabIndex = 2;
             this.panel2.Visible = false;
             // 
@@ -367,6 +374,44 @@ namespace FishShop
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.button8);
+            this.panel5.Location = new System.Drawing.Point(568, 48);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(217, 110);
+            this.panel5.TabIndex = 4;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(87, 54);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(114, 38);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Удалить";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Вы выбрали товар";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(170, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "<наименование товара>";
+            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -389,6 +434,8 @@ namespace FishShop
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,5 +474,9 @@ namespace FishShop
         private ToolStripMenuItem изменитьИнформациюОПартнереToolStripMenuItem;
         private ToolStripMenuItem добавитьПокупателяToolStripMenuItem;
         private ToolStripMenuItem изменитьИнформациюОПокупателеToolStripMenuItem;
+        private Panel panel5;
+        private Button button8;
+        private Label label6;
+        private Label label5;
     }
 }

@@ -14,6 +14,7 @@ namespace FishShop
             InitializeComponent();
             panel3.Visible = false;
             dataGridView2.Enabled = false;
+            panel5.Visible = false;
         }
 
         Form parentForm;
@@ -28,6 +29,7 @@ namespace FishShop
             panel3.Visible = false;
             parentForm = form;
             dataGridView2.Enabled = false;
+            panel5.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -114,6 +116,8 @@ namespace FishShop
             panel1.Visible = true;
             panel2.Visible = false;
             panel4.Visible = false;
+            panel5.Visible = false;
+            typeMenu = "";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -166,26 +170,29 @@ namespace FishShop
             dataGridView2.Columns[1].HeaderText = "Количество штук";
             dataGridView2.Columns[1].Width = 90;
 
-            panel4.Visible = true;
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            //panel4.Visible = true;
-            /*for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            if (typeMenu == "Удаление")
             {
-                sb.Append(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[i].Value + " ");          
-            }*/
-            label2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            try
-            {
-                int quantity = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString());
-                for (int j = 0; j < quantity; j++)
+                panel5.Visible = true;
+                label6.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            }
+            else {
+                panel4.Visible = true;
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                label2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+                try
                 {
-                    comboBox1.Items.Add(j + 1);
+                    int quantity = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString());
+                    for (int j = 0; j < quantity; j++)
+                    {
+                        comboBox1.Items.Add(j + 1);
+                    }
                 }
-            }
-            catch {
-                MessageBox.Show("Вы выбрали пустую строку! В следующий раз будьте отснорожнее.", "Упс...");
-            }
-            
+                catch
+                {
+                    MessageBox.Show("Вы выбрали пустую строку! В следующий раз будьте отснорожнее.", "Упс...");
+                }
+            }        
         }
 
         int rowsCount;
@@ -229,7 +236,7 @@ namespace FishShop
                     MySqlCommand commandUpdate = new MySqlCommand(queryUpdateQuantity, conSales);
                     commandUpdate.ExecuteNonQuery();
                 }
-
+                updateTable();
             }
 
             dataGridView2.Rows.Clear();
@@ -285,7 +292,119 @@ namespace FishShop
             dataGridView1.Columns[3].HeaderText = "Сумма";
             dataGridView1.Columns[3].Width = 70;
             typeMenu = "Удаление";
+            //panel5.Visible = true;
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Вы уверены что хотите удалить данный товар?", "Проверка на удаление",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var id = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            String nameColums = "";
+
+            switch (table) 
+            {
+                case "PRODUCTS":
+                    nameColums = "ID_PRODUCT";
+                break;
+
+                case "BUYER":
+                    nameColums = "ID_BUYER";
+                break;
+
+                case "PARTNERS":
+                    nameColums = "ID_PARTNER";
+                break;
+
+                default:
+                    MessageBox.Show("Непонятное завершение процесса. Обрабитесь к администратору", "ERROR");
+                    //код, выполняемый если выражение не имеет ни одно из выше указанных значений
+               break;
+
+            }
+
+            if (result == DialogResult.Yes) 
+            {
+                String SQLScript = $"DELETE FROM {table} WHERE({nameColums} = {id})";
+                MySqlCommand commandDelete = new MySqlCommand(SQLScript, conSales);
+                commandDelete.ExecuteNonQuery();
+                updateTable();
+                
+            }
+        }
+
+        private void updateTable()
+        {
+            switch (table)
+            {
+                case "PRODUCTS":
+                    updateTableProducts();
+                    break;
+
+                case "BUYER":
+                    updateTableBUYER();
+                    break;
+
+                case "PARTNERS":
+                    updateTablePARTNERS();
+                    break;
+
+                default:
+                    MessageBox.Show("Непонятное завершение процесса. Обрабитесь к администратору", "ERROR");
+                    //код, выполняемый если выражение не имеет ни одно из выше указанных значений
+                    break;
+
+            }
+        }
+
+        private void updateTablePARTNERS()
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{table}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{table}"];
+            dataGridView1.DataSource = dataTable;
+            dataGridView1.Columns[0].HeaderText = "НОМЕР";
+            dataGridView1.Columns[1].HeaderText = "Имя партнера";
+        }
+
+        private void updateTableBUYER()
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{table}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{table}"];
+            dataGridView1.DataSource = dataTable;
+            dataGridView1.Columns[0].HeaderText = "НОМЕР";
+            dataGridView1.Columns[0].Width = 70;
+            dataGridView1.Columns[1].HeaderText = "ФИО";
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].HeaderText = "Номер телефона";
+            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[3].HeaderText = "Дата регистрации";
+            dataGridView1.Columns[3].Width = 90;
+        }
+
+        private void updateTableProducts()
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter("SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM " +
+                                                    $"FROM {table}", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{table}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{table}"];
+            dataGridView1.DataSource = dataTable;
+            //=================================================
+            dataGridView1.Columns[0].HeaderText = "НОМЕР";
+            dataGridView1.Columns[0].Width = 70;
+            dataGridView1.Columns[1].HeaderText = "Имя товара";
+            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[2].HeaderText = "Количество";
+            dataGridView1.Columns[2].Width = 90;
+            dataGridView1.Columns[3].HeaderText = "Сумма";
+            dataGridView1.Columns[3].Width = 70;
+        }
     }
 }
