@@ -265,6 +265,7 @@ namespace FishShop
             this.изменитьИнформациюОПокупателеToolStripMenuItem.Name = "изменитьИнформациюОПокупателеToolStripMenuItem";
             this.изменитьИнформациюОПокупателеToolStripMenuItem.Size = new System.Drawing.Size(356, 26);
             this.изменитьИнформациюОПокупателеToolStripMenuItem.Text = "Изменить информацию о покупателе";
+            this.изменитьИнформациюОПокупателеToolStripMenuItem.Click += new System.EventHandler(this.изменитьИнформациюОПокупателеToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -306,7 +307,6 @@ namespace FishShop
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 17);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Вы выбрали товар";
             // 
             // button8
             // 

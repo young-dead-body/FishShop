@@ -72,6 +72,23 @@ namespace FishShop
             conFish_Shop = connection;
         }
 
+        public InteractionDB(string label1Text, string label2Text, ArrayList list, MySqlConnection connection)
+        {
+            InitializeComponent();
+            Text = "Изменить покупателя";
+            label1.Text = label1Text;
+            textBox1.Text = list[1].ToString();
+            label2.Text = label2Text;
+            textBox2.Text = list[2].ToString();
+            label3.Visible = false;
+            textBox3.Visible = false;
+            dateTimePicker1.Visible = false;
+            button1.Text = "Изменить";
+            button2.Text = "Отменить";
+            conFish_Shop = connection;
+            dataTable = list;
+        }
+
         public InteractionDB(string label1Text, MySqlConnection connection)
         {
             InitializeComponent();
@@ -106,7 +123,7 @@ namespace FishShop
 
             dateTimePicker1.Visible = false;
 
-            button1.Text = "Добавить";
+            button1.Text = "Изменить";
             button2.Text = "Отменить";
             conFish_Shop = connection;
             dataTable = list;
@@ -119,12 +136,12 @@ namespace FishShop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String queryUpdateQuantity;
-            MySqlCommand commandInsert;
+            String date = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
             if (button1.Text == "Изменить")
             {
                 MySqlCommand commandUpdate;
                 String SQLScript;
+
                 switch (Text)
                 {
                     case "Изменить товар":
@@ -143,10 +160,11 @@ namespace FishShop
                         commandUpdate.ExecuteNonQuery();
                         break;
                     case "Изменить покупателя":
-                        SQLScript = $"UPDATE PRODUCTS SET " +
-                                      $"SUM = {textBox3.Text}, QUANTITY = {textBox2.Text}, " +
-                                      $"NAME_PRODUCT = '{textBox1.Text}'" +
-                                      $"WHERE(ID_PRODUCT = {dataTable[0].ToString()})";
+                        SQLScript = $"UPDATE BUYER SET " +
+                                      $"FIO = '{textBox1.Text}', " +
+                                      $"PHONE_NUMBER = '{textBox2.Text}', " +
+                                      $"DATE_BUYER = '{date}'" +
+                                      $"WHERE(ID_BUYER = {dataTable[0].ToString()})";
                         commandUpdate = new MySqlCommand(SQLScript, conFish_Shop);
                         commandUpdate.ExecuteNonQuery();
                         break;
@@ -158,6 +176,8 @@ namespace FishShop
             }
             else
             {
+                String queryUpdateQuantity;
+                MySqlCommand commandInsert;
                 switch (Text)
                 {
                     case "Добавить товар":
@@ -173,7 +193,6 @@ namespace FishShop
                         commandInsert.ExecuteNonQuery();
                         break;
                     case "Добавить покупателя":
-                        String date = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
 
                         queryUpdateQuantity = $"INSERT INTO BUYER (FIO, PHONE_NUMBER, DATE_BUYER) " +
                                                     $"VALUES ('{textBox1.Text}', " +
