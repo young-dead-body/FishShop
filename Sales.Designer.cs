@@ -85,9 +85,9 @@ namespace FishShop
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 420);
+            this.panel1.Size = new System.Drawing.Size(800, 422);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -168,7 +168,7 @@ namespace FishShop
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -179,7 +179,7 @@ namespace FishShop
             this.добавитьПаToolStripMenuItem,
             this.взаимодействиеСПокупателямиToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // добавитьТоварToolStripMenuItem
@@ -242,6 +242,7 @@ namespace FishShop
             this.изменитьИнформациюОПартнереToolStripMenuItem.Name = "изменитьИнформациюОПартнереToolStripMenuItem";
             this.изменитьИнформациюОПартнереToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
             this.изменитьИнформациюОПартнереToolStripMenuItem.Text = "Изменить информацию о партнере";
+            this.изменитьИнформациюОПартнереToolStripMenuItem.Click += new System.EventHandler(this.изменитьИнформациюОПартнереToolStripMenuItem_Click);
             // 
             // взаимодействиеСПокупателямиToolStripMenuItem
             // 
@@ -273,9 +274,9 @@ namespace FishShop
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 30);
+            this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 420);
+            this.panel2.Size = new System.Drawing.Size(800, 422);
             this.panel2.TabIndex = 2;
             this.panel2.Visible = false;
             // 
