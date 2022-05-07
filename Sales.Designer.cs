@@ -54,6 +54,10 @@ namespace FishShop
             this.добавитьПокупателяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьИнформациюОПокупателеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -64,18 +68,14 @@ namespace FishShop
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button8 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -211,6 +211,7 @@ namespace FishShop
             this.изменитьТоварToolStripMenuItem.Name = "изменитьТоварToolStripMenuItem";
             this.изменитьТоварToolStripMenuItem.Size = new System.Drawing.Size(325, 26);
             this.изменитьТоварToolStripMenuItem.Text = "Изменить информацию о товаре";
+            this.изменитьТоварToolStripMenuItem.Click += new System.EventHandler(this.изменитьТоварToolStripMenuItem_Click);
             // 
             // добавитьПаToolStripMenuItem
             // 
@@ -234,6 +235,7 @@ namespace FishShop
             this.удалитьПартнераToolStripMenuItem.Name = "удалитьПартнераToolStripMenuItem";
             this.удалитьПартнераToolStripMenuItem.Size = new System.Drawing.Size(343, 26);
             this.удалитьПартнераToolStripMenuItem.Text = "Удалить партнера";
+            this.удалитьПартнераToolStripMenuItem.Click += new System.EventHandler(this.удалитьПартнераToolStripMenuItem_Click);
             // 
             // изменитьИнформациюОПартнереToolStripMenuItem
             // 
@@ -276,6 +278,44 @@ namespace FishShop
             this.panel2.Size = new System.Drawing.Size(800, 420);
             this.panel2.TabIndex = 2;
             this.panel2.Visible = false;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.button8);
+            this.panel5.Location = new System.Drawing.Point(568, 48);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(217, 110);
+            this.panel5.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(170, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "<наименование товара>";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Вы выбрали товар";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(87, 54);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(114, 38);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Удалить";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // panel4
             // 
@@ -374,44 +414,6 @@ namespace FishShop
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Controls.Add(this.label5);
-            this.panel5.Controls.Add(this.button8);
-            this.panel5.Location = new System.Drawing.Point(568, 48);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(217, 110);
-            this.panel5.TabIndex = 4;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(87, 54);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(114, 38);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "Удалить";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Вы выбрали товар";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(170, 17);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "<наименование товара>";
-            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -431,11 +433,11 @@ namespace FishShop
             this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

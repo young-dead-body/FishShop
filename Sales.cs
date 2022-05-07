@@ -77,7 +77,7 @@ namespace FishShop
                 kolvo = 1;
             }
             else {
-                kolvo = comboBox1.SelectedIndex;
+                kolvo = comboBox1.SelectedIndex + 1;
             }
 
             dataGridView2.Rows.Add(new Object[] { dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value,
@@ -269,6 +269,7 @@ namespace FishShop
         String typeMenu = "";
         private void удалитьТоварToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            button8.Text = "Удалить";
             panel4.Visible = false;
             panel1.Visible = false;
             panel2.Visible = true;
@@ -297,40 +298,99 @@ namespace FishShop
 
         private void button8_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Вы уверены что хотите удалить данный товар?", "Проверка на удаление",
+            if (button8.Text == "Удалить")
+            {
+                var result = MessageBox.Show("Вы уверены что хотите удалить данный товар?", "Проверка на удаление",
                                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            var id = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-            String nameColums = "";
+                var id = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                String nameColums = tableSelection();
 
-            switch (table) 
+                if (result == DialogResult.Yes)
+                {
+                    String SQLScript = $"DELETE FROM {table} WHERE({nameColums} = {id})";
+                    MySqlCommand commandDelete = new MySqlCommand(SQLScript, conSales);
+                    commandDelete.ExecuteNonQuery();
+                    updateTable();
+                    panel5.Visible = false;
+                }
+            }
+            else if (button8.Text == "Изменить") 
+            {
+                var result = MessageBox.Show("Вы уверены что хотите изменить информацию о данном товаре?", "Проверка на изменение",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var id = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                String nameColums = tableSelection();
+
+                //=======================ПЕРЕДЕЛАТЬ ПОД ИЗМЕНЕНИЕ
+                if (result == DialogResult.Yes)
+                {
+                    updateInformation();
+                    updateTable();
+                    panel5.Visible = false;
+                }
+                //===============================================================
+
+            }
+        }
+
+        private void updateInformation() 
+        {
+            //===========================
+            int SUM = 0;
+            int QUANTITY = 0;
+            String NAME_PRODUCT = "";
+            byte id = 1;
+            //===========================
+            switch (table)
             {
                 case "PRODUCTS":
-                    nameColums = "ID_PRODUCT";
-                break;
+                    String SQLScript = $"UPDATE {table} SET " +
+                                        $"SUM = {SUM}, QUANTITY = {QUANTITY}, NAME_PRODUCT = {NAME_PRODUCT}" +
+                                        $"WHERE(ID_PRODUCT = {id})";
+                    MySqlCommand commandDelete = new MySqlCommand(SQLScript, conSales);
+                    commandDelete.ExecuteNonQuery();
+                    /*UPDATE `fish_shop`.`partners` SET `NAME_PARTNERS` = 'ОАО \"Рыбкино счастье\"' WHERE (`ID_PARTNER` = '3');*/
+                    break;
 
                 case "BUYER":
-                    nameColums = "ID_BUYER";
-                break;
+                    break;
 
                 case "PARTNERS":
-                    nameColums = "ID_PARTNER";
-                break;
+                    break;
 
                 default:
                     MessageBox.Show("Непонятное завершение процесса. Обрабитесь к администратору", "ERROR");
                     //код, выполняемый если выражение не имеет ни одно из выше указанных значений
-               break;
+                    break;
 
             }
+        }
 
-            if (result == DialogResult.Yes) 
+        private string tableSelection()
+        {
+            String nameColums = "";
+            switch (table)
             {
-                String SQLScript = $"DELETE FROM {table} WHERE({nameColums} = {id})";
-                MySqlCommand commandDelete = new MySqlCommand(SQLScript, conSales);
-                commandDelete.ExecuteNonQuery();
-                updateTable();
-                
+                case "PRODUCTS":
+                    nameColums = "ID_PRODUCT";
+                    break;
+
+                case "BUYER":
+                    nameColums = "ID_BUYER";
+                    break;
+
+                case "PARTNERS":
+                    nameColums = "ID_PARTNER";
+                    break;
+
+                default:
+                    MessageBox.Show("Непонятное завершение процесса. Обрабитесь к администратору", "ERROR");
+                    //код, выполняемый если выражение не имеет ни одно из выше указанных значений
+                    break;
+
             }
+
+            return nameColums;
         }
 
         private void updateTable()
@@ -405,6 +465,34 @@ namespace FishShop
             dataGridView1.Columns[2].Width = 90;
             dataGridView1.Columns[3].HeaderText = "Сумма";
             dataGridView1.Columns[3].Width = 70;
+        }
+
+        private void изменитьТоварToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button8.Text = "Изменить";
+        }
+
+        private void удалитьПартнераToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button8.Text = "Удалить";
+            panel4.Visible = false;
+            panel1.Visible = false;
+            panel2.Visible = true;
+            panel2.Dock = DockStyle.Fill;
+            //======================================
+            table = "PARTNERS";
+            tableLike = "NAME_PARTNERS";
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{table}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{table}"];
+            dataGridView1.DataSource = dataTable;
+            //=================================================
+            dataGridView1.Columns[0].HeaderText = "НОМЕР";
+            dataGridView1.Columns[1].HeaderText = "Имя партнера";
+            //=================================================
+            typeMenu = "Удаление";
         }
     }
 }
