@@ -38,6 +38,10 @@ namespace FishShop
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -83,7 +87,7 @@ namespace FishShop
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 209);
+            this.button1.Location = new System.Drawing.Point(12, 254);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 43);
             this.button1.TabIndex = 8;
@@ -93,7 +97,7 @@ namespace FishShop
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(295, 209);
+            this.button2.Location = new System.Drawing.Point(295, 254);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(118, 43);
             this.button2.TabIndex = 9;
@@ -115,11 +119,78 @@ namespace FishShop
             this.textBox3.Size = new System.Drawing.Size(170, 22);
             this.textBox3.TabIndex = 11;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(36, 168);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 17);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "label4";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(36, 208);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "label5";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Зимняя рыбалка",
+            "Удилища",
+            "Катушки",
+            "Лески и плетеные шнуры",
+            "Крючки",
+            "Джиг-головки",
+            "Поплавки",
+            "Оснастка",
+            "Приманки",
+            "Прикормка",
+            "Аксессуары рыболовные",
+            "Хранение и транспортировка",
+            "Одежда и аксессуары",
+            "Обувь",
+            "Лодки и моторы"});
+            this.comboBox1.Location = new System.Drawing.Point(243, 165);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(170, 24);
+            this.comboBox1.TabIndex = 15;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Русский стандарт",
+            "Грант",
+            "Jaxon",
+            "SPRO",
+            "DAM",
+            "Okuma",
+            "Mikado",
+            "Китай",
+            "TICA",
+            "Mifine",
+            "Namazu",
+            "Kaida"});
+            this.comboBox2.Location = new System.Drawing.Point(243, 205);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(170, 24);
+            this.comboBox2.TabIndex = 16;
+            // 
             // InteractionDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 264);
+            this.ClientSize = new System.Drawing.Size(425, 307);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button2);
@@ -147,5 +218,9 @@ namespace FishShop
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

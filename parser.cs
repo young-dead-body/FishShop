@@ -15,7 +15,6 @@ namespace FishShop
         public static bool parsLoader(String login, String password) 
         {
             var filepath = "loader.xml";
-            var pid = "3";
             string name, pwd; // Новые переменные имени и пароля  
 
             // Объявляем и забиваем файл в документ  

@@ -33,6 +33,8 @@ namespace FishShop
             button1.Text = "Добавить";
             button2.Text = "Отменить";
             conFish_Shop = connection;
+            label4.Text = "Тип товара";
+            label5.Text = "Марка товара";
         }
 
         ArrayList dataTable;
@@ -50,12 +52,16 @@ namespace FishShop
             textBox1.Text = list[1].ToString();
             textBox2.Text = list[2].ToString();
             textBox3.Text = list[3].ToString();
+            comboBox1.Text = list[4].ToString();
+            comboBox2.Text = list[5].ToString();
 
             dateTimePicker1.Visible = false;
             button1.Text = "Изменить";
             button2.Text = "Отменить";
             conFish_Shop = connection;
             dataTable = list;
+            label4.Text = "Тип товара";
+            label5.Text = "Марка товара";
         }
 
         public InteractionDB(string label1Text, string label2Text, MySqlConnection connection)
@@ -70,6 +76,10 @@ namespace FishShop
             button1.Text = "Добавить";
             button2.Text = "Отменить";
             conFish_Shop = connection;
+            label4.Visible = false;
+            label5.Visible = false;
+            comboBox1.Visible = false;
+            comboBox2.Visible = false;
         }
 
         public InteractionDB(string label1Text, string label2Text, ArrayList list, MySqlConnection connection)
@@ -87,6 +97,10 @@ namespace FishShop
             button2.Text = "Отменить";
             conFish_Shop = connection;
             dataTable = list;
+            label4.Visible = false;
+            label5.Visible = false;
+            comboBox1.Visible = false;
+            comboBox2.Visible = false;
         }
 
         public InteractionDB(string label1Text, MySqlConnection connection)
@@ -106,6 +120,10 @@ namespace FishShop
             button1.Text = "Добавить";
             button2.Text = "Отменить";
             conFish_Shop = connection;
+            label4.Visible = false;
+            label5.Visible = false;
+            comboBox1.Visible = false;
+            comboBox2.Visible = false;
         }
 
         public InteractionDB(string label1Text, ArrayList list,MySqlConnection connection)
@@ -127,6 +145,10 @@ namespace FishShop
             button2.Text = "Отменить";
             conFish_Shop = connection;
             dataTable = list;
+            label4.Visible = false;
+            label5.Visible = false;
+            comboBox1.Visible = false;
+            comboBox2.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -147,10 +169,12 @@ namespace FishShop
                     case "Изменить товар":
                         SQLScript = $"UPDATE PRODUCTS SET " +
                                        $"SUM = {textBox3.Text}, QUANTITY = {textBox2.Text}, " +
-                                       $"NAME_PRODUCT = '{textBox1.Text}'" +
+                                       $"NAME_PRODUCT = '{textBox1.Text}', TYPE_PRODUCT = '{comboBox1.SelectedItem}', " +
+                                       $"MARKA_PRODUCT = '{comboBox2.SelectedItem}', DATE_PRODUCT = '{date}' " +
                                        $"WHERE(ID_PRODUCT = {dataTable[0].ToString()})";
                         commandUpdate = new MySqlCommand(SQLScript, conFish_Shop);
                         commandUpdate.ExecuteNonQuery();
+                        insertEntranceproducts();
                         break;
                     case "Изменить партнера":
                         SQLScript = $"UPDATE PARTNERS SET " +
@@ -181,10 +205,12 @@ namespace FishShop
                 switch (Text)
                 {
                     case "Добавить товар":
-                        queryUpdateQuantity = $"INSERT INTO PRODUCTS (NAME_PRODUCT, QUANTITY, SUM) " +
-                                                    $"VALUES ('{parser.parserText(textBox1.Text)}', {textBox2.Text}, {textBox3.Text})";
+                        queryUpdateQuantity = $"INSERT INTO PRODUCTS (NAME_PRODUCT, QUANTITY, SUM, TYPE_PRODUCT, MARKA_PRODUCT, DATE_PRODUCT) " +
+                                                    $"VALUES ('{parser.parserText(textBox1.Text)}', {textBox2.Text}, " +
+                                                    $"{textBox3.Text}, '{comboBox1.SelectedItem}', '{comboBox2.SelectedItem}', '{date}')";
                         commandInsert = new MySqlCommand(queryUpdateQuantity, conFish_Shop);
                         commandInsert.ExecuteNonQuery();
+                        insertEntranceproducts();
                         break;
                     case "Добавить партнера":
                         queryUpdateQuantity = $"INSERT INTO PARTNERS (NAME_PARTNERS) " +
@@ -209,6 +235,29 @@ namespace FishShop
             }
             
             Close();
+        }
+
+        private void insertEntranceproducts() //ДОРАБОТАТЬ
+        {
+            String date = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+            String name_product = textBox1.Text;
+            String type_product = comboBox1.Text;
+            String marka_product = comboBox2.Text;
+            int kolvo_entranceproduct = 0;
+            if (Text == "Добавить товар")
+            {
+                kolvo_entranceproduct = Convert.ToInt32(textBox2.Text);
+            }
+            else 
+            {
+                // сделай скрипт для проверки прошлого значения
+                // из текущего вычти прошлое 
+                // проверку тоже сделай все таки продавец дурачок <3
+            }
+            String insertQuery = $"INSERT INTO entranceproducts (name_product, type_product, marka_product, data_entrance, kolvo_entranceproduct) " +
+                $"VALUES ('{name_product}', '{type_product}', '{marka_product}', '{date}', {kolvo_entranceproduct});";
+            MySqlCommand commandUpdate = new MySqlCommand(insertQuery, conFish_Shop);
+            commandUpdate.ExecuteNonQuery();
         }
     }
 }

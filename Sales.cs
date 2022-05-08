@@ -68,6 +68,8 @@ namespace FishShop
 
         int numberProducts = 0;
 
+        ArrayList dataSale = new ArrayList();
+        ArrayList PK_PRODUCTS = new ArrayList();
         private void button6_Click(object sender, EventArgs e)
         {
             panel4.Visible = false;
@@ -83,6 +85,10 @@ namespace FishShop
             dataGridView2.Rows.Add(new Object[] { dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value,
                                                     kolvo});
             numberProducts++;
+            dataSale.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value);
+            dataSale.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value);
+            dataSale.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value);
+            PK_PRODUCTS.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -94,8 +100,12 @@ namespace FishShop
             panel2.Dock = DockStyle.Fill;
             table = "PRODUCTS";
             tableLike = "NAME_PRODUCT";
-            MySqlDataAdapter data = new MySqlDataAdapter("SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM " +
-                                                        $"FROM {table}", conSales);
+            loadProducts();
+        }
+
+        private void loadProducts() {
+            MySqlDataAdapter data = new MySqlDataAdapter("SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM, TYPE_PRODUCT, MARKA_PRODUCT " +
+                                             $"FROM {table}", conSales);
             DataSet dstFish_Shop = new DataSet("fish_shop");
             data.Fill(dstFish_Shop, $"{table}");
             DataTable dataTable;
@@ -110,6 +120,17 @@ namespace FishShop
             dataGridView1.Columns[2].Width = 90;
             dataGridView1.Columns[3].HeaderText = "Сумма";
             dataGridView1.Columns[3].Width = 70;
+            dataGridView1.Columns[4].HeaderText = "Тип";
+            dataGridView1.Columns[4].Width = 90;
+            dataGridView1.Columns[5].HeaderText = "Марка";
+            dataGridView1.Columns[5].Width = 90;
+            dataGridView1.Width = 550;
+            Width = 740;
+            textBox1.Location = new System.Drawing.Point(565, 3);
+            textBox1.Width = 120;
+            button2.Location = new System.Drawing.Point(565, 315);
+            panel4.Location = new System.Drawing.Point(565, 28);
+            panel5.Location = new System.Drawing.Point(565, 28);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -119,6 +140,7 @@ namespace FishShop
             panel4.Visible = false;
             panel5.Visible = false;
             typeMenu = "";
+            Width = 600;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -128,6 +150,11 @@ namespace FishShop
             panel2.Dock = DockStyle.Fill;
             table = "PARTNERS";
             tableLike = "NAME_PARTNERS";
+            loadPartners();
+        }
+
+        private void loadPartners() 
+        {
             MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
             DataSet dstFish_Shop = new DataSet("fish_shop");
             data.Fill(dstFish_Shop, $"{table}");
@@ -136,6 +163,12 @@ namespace FishShop
             dataGridView1.DataSource = dataTable;
             dataGridView1.Columns[0].HeaderText = "НОМЕР";
             dataGridView1.Columns[1].HeaderText = "Имя партнера";
+            dataGridView1.Columns[1].Width = 200;
+            dataGridView1.Width = 400;
+            textBox1.Location = new System.Drawing.Point(420, 3);
+            panel4.Location = new System.Drawing.Point(420, 28);
+            button2.Location = new System.Drawing.Point(420, 315);
+            panel5.Location = new System.Drawing.Point(420, 28);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -181,6 +214,7 @@ namespace FishShop
                 break;
 
                 case "Выбрать":
+                    comboBox1.Items.Clear();
                     panel4.Visible = true;
                     System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
@@ -224,14 +258,17 @@ namespace FishShop
         {
             for (int k = 0; k < numberProducts; k++)
             {
-                String nameProducts = dataGridView2.CurrentRow.Cells[0].Value.ToString();
-                String quantityProducts = dataGridView2.CurrentRow.Cells[1].Value.ToString();
+                //String nameProducts = dataGridView2.CurrentRow.Cells[0].Value.ToString();
+                // String quantityProducts = dataGridView2.CurrentRow.Cells[1].Value.ToString();
+                String nameProducts = dataGridView2.Rows[k].Cells[0].Value.ToString();
+                String quantityProducts = dataGridView2.Rows[k].Cells[1].Value.ToString();
+
 
                 //==============================================
 
                 String querySQL = $"SELECT QUANTITY " +
                                $"FROM PRODUCTS " +
-                               $"WHERE NAME_PRODUCT = '{nameProducts}'";
+                               $"WHERE ID_PRODUCT = {PK_PRODUCTS[k].ToString()}";
                 MySqlCommand command = new MySqlCommand(querySQL, conSales);
                 int oldQuantity = Convert.ToInt32(command.ExecuteScalar().ToString());
                 int buyerQuantity = Convert.ToInt32(quantityProducts);
@@ -245,13 +282,32 @@ namespace FishShop
                 else 
                 {
                     String queryUpdateQuantity = $"UPDATE PRODUCTS SET QUANTITY = {oldQuantity - buyerQuantity} " +
-                                    $"WHERE NAME_PRODUCT = '{nameProducts}'";
+                                    $"WHERE ID_PRODUCT = {PK_PRODUCTS[k].ToString()}";
                     MySqlCommand commandUpdate = new MySqlCommand(queryUpdateQuantity, conSales);
                     commandUpdate.ExecuteNonQuery();
-                }
-                updateTable();
-            }
 
+                    if (oldQuantity == buyerQuantity) // если равны по удаляем
+                    {
+                        String queryDelete = $"DELETE FROM PRODUCTS WHERE (ID_PRODUCT = {PK_PRODUCTS[k].ToString()})";
+                        commandUpdate = new MySqlCommand(queryDelete, conSales);
+                        commandUpdate.ExecuteNonQuery();
+                    }
+                    //======================================
+                        String kolvo = dataGridView2.Rows[k].Cells[1].Value.ToString();
+                        String date = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+                        String name_product = dataSale[k * 3].ToString();
+                        String type_product = dataSale[k * 3 + 1].ToString();
+                        String marka_product = dataSale[k * 3 + 2].ToString();
+                        String insertQuery = $"INSERT INTO SALEPRODUCTS  (name_product, type_product, marka_product, data_sale, kolvo_saleproduct) " +
+                            $"VALUES ('{name_product}', '{type_product}', '{marka_product}', '{date}', {kolvo});";
+                        commandUpdate = new MySqlCommand(insertQuery, conSales);
+                        commandUpdate.ExecuteNonQuery();
+                    //======================================
+                }
+            }
+            updateTable();
+            //ВЕРНИСЬ
+            Width = 600;
             dataGridView2.Rows.Clear();
             panel3.Visible = false;
             numberProducts = 0;
@@ -291,22 +347,7 @@ namespace FishShop
             panel2.Dock = DockStyle.Fill;
             table = "PRODUCTS";
             tableLike = "NAME_PRODUCT";
-            MySqlDataAdapter data = new MySqlDataAdapter("SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM " +
-                                                        $"FROM {table}", conSales);
-            DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"{table}");
-            DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"{table}"];
-            dataGridView1.DataSource = dataTable;
-            //=================================================
-            dataGridView1.Columns[0].HeaderText = "НОМЕР";
-            dataGridView1.Columns[0].Width = 70;
-            dataGridView1.Columns[1].HeaderText = "Имя товара";
-            dataGridView1.Columns[1].Width = 80;
-            dataGridView1.Columns[2].HeaderText = "Количество";
-            dataGridView1.Columns[2].Width = 90;
-            dataGridView1.Columns[3].HeaderText = "Сумма";
-            dataGridView1.Columns[3].Width = 70;
+            loadProducts();
             typeMenu = "Удаление";
             //panel5.Visible = true;
         }
@@ -363,6 +404,8 @@ namespace FishShop
                     list.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString());
                     list.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString());
                     list.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString());
+                    list.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString());
+                    list.Add(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString());
 
                     interactionDB = new InteractionDB("Наименование товара",
                                                             "Количество",
@@ -450,14 +493,7 @@ namespace FishShop
 
         private void updateTablePARTNERS()
         {
-            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
-            DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"{table}");
-            DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"{table}"];
-            dataGridView1.DataSource = dataTable;
-            dataGridView1.Columns[0].HeaderText = "НОМЕР";
-            dataGridView1.Columns[1].HeaderText = "Имя партнера";
+            loadPartners();
         }
 
         private void updateTableBUYER()
@@ -480,22 +516,7 @@ namespace FishShop
 
         private void updateTableProducts()
         {
-            MySqlDataAdapter data = new MySqlDataAdapter("SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM " +
-                                                    $"FROM {table}", conSales);
-            DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"{table}");
-            DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"{table}"];
-            dataGridView1.DataSource = dataTable;
-            //=================================================
-            dataGridView1.Columns[0].HeaderText = "НОМЕР";
-            dataGridView1.Columns[0].Width = 70;
-            dataGridView1.Columns[1].HeaderText = "Имя товара";
-            dataGridView1.Columns[1].Width = 80;
-            dataGridView1.Columns[2].HeaderText = "Количество";
-            dataGridView1.Columns[2].Width = 90;
-            dataGridView1.Columns[3].HeaderText = "Сумма";
-            dataGridView1.Columns[3].Width = 70;
+            loadProducts();
         }
 
         private void изменитьТоварToolStripMenuItem_Click(object sender, EventArgs e)
@@ -505,22 +526,7 @@ namespace FishShop
             typeMenu = "Изменить";
             table = "PRODUCTS";
             panel2.Visible = true;
-            MySqlDataAdapter data = new MySqlDataAdapter("SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM " +
-                                                    $"FROM {table}", conSales);
-            DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"{table}");
-            DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"{table}"];
-            dataGridView1.DataSource = dataTable;
-            //=================================================
-            dataGridView1.Columns[0].HeaderText = "НОМЕР";
-            dataGridView1.Columns[0].Width = 70;
-            dataGridView1.Columns[1].HeaderText = "Имя товара";
-            dataGridView1.Columns[1].Width = 80;
-            dataGridView1.Columns[2].HeaderText = "Количество";
-            dataGridView1.Columns[2].Width = 90;
-            dataGridView1.Columns[3].HeaderText = "Сумма";
-            dataGridView1.Columns[3].Width = 70;
+            loadProducts();
         }
 
         private void удалитьПартнераToolStripMenuItem_Click(object sender, EventArgs e)
@@ -533,17 +539,7 @@ namespace FishShop
             panel2.Visible = true;
             panel2.Dock = DockStyle.Fill;
             //======================================
-            table = "PARTNERS";
-            tableLike = "NAME_PARTNERS";
-            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
-            DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"{table}");
-            DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"{table}"];
-            dataGridView1.DataSource = dataTable;
-            //=================================================
-            dataGridView1.Columns[0].HeaderText = "НОМЕР";
-            dataGridView1.Columns[1].HeaderText = "Имя партнера";
+            loadPartners();
             //=================================================
             typeMenu = "Удаление";
         }
@@ -556,15 +552,7 @@ namespace FishShop
             table = "PARTNERS";
             panel2.Visible = true;
             //======================================
-            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
-            DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"{table}");
-            DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"{table}"];
-            dataGridView1.DataSource = dataTable;
-            dataGridView1.Columns[0].HeaderText = "НОМЕР";
-            dataGridView1.Columns[1].HeaderText = "Имя партнера";
-            dataGridView1.Columns[1].Width = 150;
+            loadPartners();
         }
 
         private void изменитьИнформациюОПокупателеToolStripMenuItem_Click(object sender, EventArgs e)
