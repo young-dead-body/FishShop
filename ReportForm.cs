@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace FishShop
 {
-    public partial class Form1 : Form
+    public partial class ReportForm : Form
     {
-        public Form1()
+        public ReportForm()
         {
             InitializeComponent();
         }
 
-        public Form1(string typereport)
+        public ReportForm(string typereport)
         {
             InitializeComponent();
             Text = typereport;

@@ -1,7 +1,7 @@
 ﻿
 namespace FishShop
 {
-    partial class Form1
+    partial class ReportForm
     {
         /// <summary>
         /// Required designer variable.

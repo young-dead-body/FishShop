@@ -585,7 +585,7 @@ namespace FishShop
             String sqlTable = "entranceproducts";
             loadReport(sqlTable, 1, 2, 3, 4, 5);
 
-            Form1 form1 = new Form1("Отчет о поступлении товаров");
+            ReportForm form1 = new ReportForm("Отчет о поступлении товаров");
             form1.Show();
         }
 
@@ -594,7 +594,7 @@ namespace FishShop
             String sqlTable = "saleproducts";
             loadReport(sqlTable,1, 2, 3, 4, 5);
 
-            Form1 form1 = new Form1("Отчет о продаже товаров");
+            ReportForm form1 = new ReportForm("Отчет о продаже товаров");
             form1.Show();
         }
 
@@ -630,7 +630,7 @@ namespace FishShop
             String sqlTable = "products";
             loadReport(sqlTable,3,4,5,6,2);
 
-            Form1 form1 = new Form1("Отчет о наличии товаров");
+            ReportForm form1 = new ReportForm("Отчет о наличии товаров");
             form1.Show();
         }
     }
