@@ -14,9 +14,7 @@ namespace FishShop
     {
         public MainMenu()
         {
-            InitializeComponent();
-            
-            
+            InitializeComponent(); 
         }
 
         private void aboutTheProgramToolStripMenuItem_Click(object sender, EventArgs e)

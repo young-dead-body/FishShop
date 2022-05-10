@@ -31,6 +31,7 @@ namespace FishShop
             parentForm = form;
             dataGridView2.Enabled = false;
             panel5.Visible = false;
+            comboBox2.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,12 +54,25 @@ namespace FishShop
         String tableLike;
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table} WHERE {tableLike} LIKE '%{textBox1.Text}%'", conSales);
-            DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"{table}");
-            DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"{table}"];
-            dataGridView1.DataSource = dataTable;
+            if (table == "products") 
+            {
+                MySqlDataAdapter data = new MySqlDataAdapter($"SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM, TYPE_PRODUCT, MARKA_PRODUCT FROM {table} WHERE {tableLike} LIKE '%{textBox1.Text}%'", conSales);
+                DataSet dstFish_Shop = new DataSet("fish_shop");
+                data.Fill(dstFish_Shop, $"{table}");
+                DataTable dataTable;
+                dataTable = dstFish_Shop.Tables[$"{table}"];
+                dataGridView1.DataSource = dataTable;
+            }
+            else 
+            {
+                MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table} WHERE {tableLike} LIKE '%{textBox1.Text}%'", conSales);
+                DataSet dstFish_Shop = new DataSet("fish_shop");
+                data.Fill(dstFish_Shop, $"{table}");
+                DataTable dataTable;
+                dataTable = dstFish_Shop.Tables[$"{table}"];
+                dataGridView1.DataSource = dataTable;
+            }
+           
         }
 
         private void Sales_FormClosed(object sender, FormClosedEventArgs e)
@@ -101,6 +115,7 @@ namespace FishShop
             panel2.Dock = DockStyle.Fill;
             table = "PRODUCTS";
             tableLike = "NAME_PRODUCT";
+            comboBox2.Visible = true;
             loadProducts();
         }
 
@@ -125,13 +140,17 @@ namespace FishShop
             dataGridView1.Columns[4].Width = 90;
             dataGridView1.Columns[5].HeaderText = "Марка";
             dataGridView1.Columns[5].Width = 90;
+            //dataGridView1.Columns[6].HeaderText = "Дата";
+
             dataGridView1.Width = 550;
             Width = 740;
             textBox1.Location = new System.Drawing.Point(565, 3);
-            textBox1.Width = 120;
+            textBox1.Width = 140;
             button2.Location = new System.Drawing.Point(565, 315);
             panel4.Location = new System.Drawing.Point(565, 28);
             panel5.Location = new System.Drawing.Point(565, 28);
+            comboBox2.Location = new System.Drawing.Point(565, 250);
+            comboBox2.Width = 140;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -142,6 +161,7 @@ namespace FishShop
             panel5.Visible = false;
             typeMenu = "";
             Width = 600;
+            comboBox2.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -170,6 +190,8 @@ namespace FishShop
             panel4.Location = new System.Drawing.Point(420, 28);
             button2.Location = new System.Drawing.Point(420, 315);
             panel5.Location = new System.Drawing.Point(420, 28);
+            textBox1.Width = 140;
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -179,6 +201,7 @@ namespace FishShop
             panel2.Dock = DockStyle.Fill;
             table = "buyer";
             tableLike = "fio";
+            //ДОДЕЛАЙ 
             MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
             DataSet dstFish_Shop = new DataSet("fish_shop");
             data.Fill(dstFish_Shop, $"{table}");
@@ -193,9 +216,12 @@ namespace FishShop
             dataGridView1.Columns[2].Width = 100;
             dataGridView1.Columns[3].HeaderText = "Дата регистрации";
             dataGridView1.Columns[3].Width = 90;
+            textBox1.Location = new System.Drawing.Point(420, 3);
+            panel4.Location = new System.Drawing.Point(420, 28);
+            button2.Location = new System.Drawing.Point(420, 315);
+            panel5.Location = new System.Drawing.Point(420, 28);
+            textBox1.Width = 140;
         }
-
-        ArrayList shopping = new ArrayList();
 
         String typeData = "";
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -513,6 +539,11 @@ namespace FishShop
             dataGridView1.Columns[2].Width = 100;
             dataGridView1.Columns[3].HeaderText = "Дата регистрации";
             dataGridView1.Columns[3].Width = 90;
+            textBox1.Location = new System.Drawing.Point(420, 3);
+            panel4.Location = new System.Drawing.Point(420, 28);
+            button2.Location = new System.Drawing.Point(420, 315);
+            panel5.Location = new System.Drawing.Point(420, 28);
+            textBox1.Width = 140;
         }
 
         private void updateTableProducts()
@@ -539,6 +570,7 @@ namespace FishShop
             panel1.Visible = false;
             panel2.Visible = true;
             panel2.Dock = DockStyle.Fill;
+            table = "PARTNERS";
             //======================================
             loadPartners();
             //=================================================
@@ -578,6 +610,11 @@ namespace FishShop
             dataGridView1.Columns[2].Width = 100;
             dataGridView1.Columns[3].HeaderText = "Дата регистрации";
             dataGridView1.Columns[3].Width = 90;
+            textBox1.Location = new System.Drawing.Point(420, 3);
+            panel4.Location = new System.Drawing.Point(420, 28);
+            button2.Location = new System.Drawing.Point(420, 315);
+            panel5.Location = new System.Drawing.Point(420, 28);
+            textBox1.Width = 140;
         }
 
         private void отчетToolStripMenuItem_Click(object sender, EventArgs e)
@@ -632,6 +669,48 @@ namespace FishShop
 
             ReportForm form1 = new ReportForm("Отчет о наличии товаров");
             form1.Show();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT ID_PRODUCT, NAME_PRODUCT, QUANTITY, SUM, TYPE_PRODUCT, MARKA_PRODUCT FROM {table} WHERE TYPE_PRODUCT LIKE '%{comboBox2.Text}%'", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{table}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{table}"];
+            dataGridView1.DataSource = dataTable;
+        }
+
+        private void просмотрПоступленийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            panel2.Visible = true;
+            panel1.Visible = false;
+            panel3.Visible = false;
+            panel4.Visible = false;
+            panel5.Visible = false;
+            dataGridView1.Width = 670;
+            Width = 800;
+            button2.Location = new System.Drawing.Point(700, 310);
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM entranceproducts", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"entranceproducts");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"entranceproducts"];
+            dataGridView1.DataSource = dataTable;
+
+            dataGridView1.Columns[0].HeaderText = "Номер";
+            dataGridView1.Columns[0].Width = 70;
+            dataGridView1.Columns[1].HeaderText = "Наименование";
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].HeaderText = "Вид";
+            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[3].HeaderText = "Марка";
+            dataGridView1.Columns[3].Width = 90;
+            dataGridView1.Columns[4].HeaderText = "Дата поступления";
+            dataGridView1.Columns[4].Width = 90;
+            dataGridView1.Columns[5].HeaderText = "Количество";
+            dataGridView1.Columns[5].Width = 90;
         }
     }
 }

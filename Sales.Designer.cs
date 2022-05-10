@@ -73,6 +73,8 @@ namespace FishShop
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.просмотрПоступленийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -183,7 +185,8 @@ namespace FishShop
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьТоварToolStripMenuItem,
             this.добавитьПаToolStripMenuItem,
-            this.взаимодействиеСПокупателямиToolStripMenuItem});
+            this.взаимодействиеСПокупателямиToolStripMenuItem,
+            this.просмотрПоступленийToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -306,6 +309,7 @@ namespace FishShop
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.textBox1);
@@ -452,6 +456,38 @@ namespace FishShop
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Зимняя рыбалка",
+            "Удилища",
+            "Катушки",
+            "Лески и плетеные шнуры",
+            "Крючки",
+            "Джиг-головки",
+            "Поплавки",
+            "Оснастка",
+            "Приманки",
+            "Прикормка",
+            "Аксессуары рыболовные",
+            "Хранение и транспортировка",
+            "Одежда и аксессуары",
+            "Обувь",
+            "Лодки и моторы"});
+            this.comboBox2.Location = new System.Drawing.Point(568, 298);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(215, 24);
+            this.comboBox2.TabIndex = 5;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // просмотрПоступленийToolStripMenuItem
+            // 
+            this.просмотрПоступленийToolStripMenuItem.Name = "просмотрПоступленийToolStripMenuItem";
+            this.просмотрПоступленийToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
+            this.просмотрПоступленийToolStripMenuItem.Text = "Просмотр поступлений";
+            this.просмотрПоступленийToolStripMenuItem.Click += new System.EventHandler(this.просмотрПоступленийToolStripMenuItem_Click);
+            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -523,5 +559,7 @@ namespace FishShop
         private ToolStripMenuItem отчетToolStripMenuItem;
         private ToolStripMenuItem отчетПоПродажеТоваровToolStripMenuItem;
         private ToolStripMenuItem отчетПоНаличиюТоваровToolStripMenuItem;
+        private ComboBox comboBox2;
+        private ToolStripMenuItem просмотрПоступленийToolStripMenuItem;
     }
 }
