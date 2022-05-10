@@ -22,13 +22,10 @@ namespace FishShop
         public Form1(string typereport)
         {
             InitializeComponent();
-            switch (typereport) 
-            {
-                case "поступило":
-                    loadReportEntranceproducts();
-                break;
-            }
+            Text = typereport;
+            loadReportEntranceproducts();
         }
+    
 
         private void loadReportEntranceproducts()
         {
@@ -44,5 +41,6 @@ namespace FishShop
             reportViewer1.LocalReport.Refresh();
             reportViewer1.RefreshReport(); // refresh report
         }
+
     }
 }

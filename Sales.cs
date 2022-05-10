@@ -582,15 +582,33 @@ namespace FishShop
 
         private void отчетToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM entranceproducts", conSales);
+            String sqlTable = "entranceproducts";
+            loadReport(sqlTable, 1, 2, 3, 4, 5);
+
+            Form1 form1 = new Form1("Отчет о поступлении товаров");
+            form1.Show();
+        }
+
+        private void отчетПоПродажеТоваровToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String sqlTable = "saleproducts";
+            loadReport(sqlTable,1, 2, 3, 4, 5);
+
+            Form1 form1 = new Form1("Отчет о продаже товаров");
+            form1.Show();
+        }
+
+        private void loadReport(string sqlTable, int first, int second, int third, int fourth, int fifth) 
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {sqlTable}", conSales);
             DataSet dstFish_Shop = new DataSet("fish_shop");
-            data.Fill(dstFish_Shop, $"entranceproducts");
+            data.Fill(dstFish_Shop, $"{sqlTable}");
             DataTable dataTable;
-            dataTable = dstFish_Shop.Tables[$"entranceproducts"];
+            dataTable = dstFish_Shop.Tables[$"{sqlTable}"];
             dataGridView1.DataSource = dataTable;
 
             //////////
-            String querySQL = $"SELECT COUNT(*) FROM entranceproducts";
+            String querySQL = $"SELECT COUNT(*) FROM {sqlTable}";
             MySqlCommand command = new MySqlCommand(querySQL, conSales);
             int count = Convert.ToInt32(command.ExecuteScalar().ToString());
             /////////
@@ -598,14 +616,21 @@ namespace FishShop
             for (int i = 0; i < count; i++)
             {
                 int ID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
-                string Name = dataGridView1.Rows[i].Cells[1].Value.ToString();
-                string TYPE = dataGridView1.Rows[i].Cells[2].Value.ToString();
-                string Marka = dataGridView1.Rows[i].Cells[3].Value.ToString();
-                string Date = dataGridView1.Rows[i].Cells[4].Value.ToString();
-                ForReportRepository.GetForReports(ID, Name, TYPE, Marka, Date);         
+                string Name = dataGridView1.Rows[i].Cells[first].Value.ToString();
+                string TYPE = dataGridView1.Rows[i].Cells[second].Value.ToString();
+                string Marka = dataGridView1.Rows[i].Cells[third].Value.ToString();
+                string Date = dataGridView1.Rows[i].Cells[fourth].Value.ToString();
+                int Kolvo = Convert.ToInt32(dataGridView1.Rows[i].Cells[fifth].Value);
+                ForReportRepository.GetForReports(ID, Name, TYPE, Marka, Date, Kolvo);
             }
+        }
 
-            Form1 form1 = new Form1("поступило");
+        private void отчетПоНаличиюТоваровToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String sqlTable = "products";
+            loadReport(sqlTable,3,4,5,6,2);
+
+            Form1 form1 = new Form1("Отчет о наличии товаров");
             form1.Show();
         }
     }

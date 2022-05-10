@@ -6,16 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.897cm</Width>
+              <Width>3.30433cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.09933cm</Width>
+              <Width>3.60067cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.17733cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.48967cm</Width>
+              <Width>3.34667cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.5cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -72,9 +75,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Тип</Value>
+                              <Value>Вид</Value>
                               <Style>
-                                <FontStyle>Normal</FontStyle>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#666666</Color>
@@ -187,6 +189,47 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox9">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Количество</Value>
+                              <Style>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#666666</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox9</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <BackgroundColor>White</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
             <TablixRow>
@@ -208,7 +251,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Name</rd:DefaultName>
@@ -241,7 +286,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>TYPE</rd:DefaultName>
@@ -274,7 +321,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Marka</rd:DefaultName>
@@ -307,10 +356,47 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Date</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Kolvo">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Kolvo.Value</Value>
+                              <Style>
+                                <FontWeight>Normal</FontWeight>
+                                <Color>#333333</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Kolvo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -334,6 +420,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -348,7 +435,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>1.2cm</Height>
-        <Width>15.66333cm</Width>
+        <Width>15.25167cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -359,7 +446,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>6.85in</Width>
+  <Width>6.5in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -377,7 +464,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>cd404578-7f75-47ee-8a87-7f30b0ded2cd</rd:DataSourceID>
+      <rd:DataSourceID>b1ed9509-4f74-436e-b29a-2e8a53d01b32</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -393,6 +480,10 @@
         </Field>
         <Field Name="ID">
           <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Kolvo">
+          <DataField>Kolvo</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Marka">
@@ -416,5 +507,5 @@
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>426a9461-e907-4d99-97bc-61a1b6c0e1cf</rd:ReportID>
+  <rd:ReportID>2434e90b-790e-40f1-9ece-d41000582030</rd:ReportID>
 </Report>

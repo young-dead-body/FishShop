@@ -18,13 +18,15 @@ namespace FishShop
         public string Marka { get; set; }
 
         public string Date { get; set; }
+
+        public int Kolvo { get; set; }
     }
 
     public class ForReportRepository
     {
         public static List<ForReport> list = new List<ForReport> { };
 
-        public static List<ForReport> GetForReports(int id, string name, string type, string marka, string date)
+        public static List<ForReport> GetForReports(int id, string name, string type, string marka, string date, int kolvo)
         {
             list.Add(new ForReport
             {
@@ -32,7 +34,8 @@ namespace FishShop
                 Name = name,
                 TYPE = type,
                 Marka = marka,
-                Date = date
+                Date = date,
+                Kolvo = kolvo
             }
             );
             return list;

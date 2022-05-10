@@ -55,6 +55,8 @@ namespace FishShop
             this.изменитьИнформациюОПокупателеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчетПоПродажеТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчетПоНаличиюТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -70,8 +72,6 @@ namespace FishShop
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.отчетПоПродажеТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.отчетПоНаличиюТоваровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -289,6 +289,20 @@ namespace FishShop
             this.отчетToolStripMenuItem.Text = "Отчет по поступлению товаров";
             this.отчетToolStripMenuItem.Click += new System.EventHandler(this.отчетToolStripMenuItem_Click);
             // 
+            // отчетПоПродажеТоваровToolStripMenuItem
+            // 
+            this.отчетПоПродажеТоваровToolStripMenuItem.Name = "отчетПоПродажеТоваровToolStripMenuItem";
+            this.отчетПоПродажеТоваровToolStripMenuItem.Size = new System.Drawing.Size(311, 26);
+            this.отчетПоПродажеТоваровToolStripMenuItem.Text = "Отчет по продаже товаров";
+            this.отчетПоПродажеТоваровToolStripMenuItem.Click += new System.EventHandler(this.отчетПоПродажеТоваровToolStripMenuItem_Click);
+            // 
+            // отчетПоНаличиюТоваровToolStripMenuItem
+            // 
+            this.отчетПоНаличиюТоваровToolStripMenuItem.Name = "отчетПоНаличиюТоваровToolStripMenuItem";
+            this.отчетПоНаличиюТоваровToolStripMenuItem.Size = new System.Drawing.Size(311, 26);
+            this.отчетПоНаличиюТоваровToolStripMenuItem.Text = "Отчет по наличию товаров";
+            this.отчетПоНаличиюТоваровToolStripMenuItem.Click += new System.EventHandler(this.отчетПоНаличиюТоваровToolStripMenuItem_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.panel5);
@@ -436,18 +450,6 @@ namespace FishShop
             this.dataGridView1.Size = new System.Drawing.Size(558, 408);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // отчетПоПродажеТоваровToolStripMenuItem
-            // 
-            this.отчетПоПродажеТоваровToolStripMenuItem.Name = "отчетПоПродажеТоваровToolStripMenuItem";
-            this.отчетПоПродажеТоваровToolStripMenuItem.Size = new System.Drawing.Size(311, 26);
-            this.отчетПоПродажеТоваровToolStripMenuItem.Text = "Отчет по продаже товаров";
-            // 
-            // отчетПоНаличиюТоваровToolStripMenuItem
-            // 
-            this.отчетПоНаличиюТоваровToolStripMenuItem.Name = "отчетПоНаличиюТоваровToolStripMenuItem";
-            this.отчетПоНаличиюТоваровToolStripMenuItem.Size = new System.Drawing.Size(311, 26);
-            this.отчетПоНаличиюТоваровToolStripMenuItem.Text = "Отчет по наличию товаров";
             // 
             // Sales
             // 
