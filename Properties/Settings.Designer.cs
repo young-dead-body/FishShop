@@ -32,5 +32,26 @@ namespace FishShop.Properties {
                 return ((string)(this["fish_shopConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=root1111;persistsecurityinfo=False;databas" +
+            "e=fish_shop")]
+        public string fish_shopConnectionString1 {
+            get {
+                return ((string)(this["fish_shopConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;database=fish_shop;port=3306")]
+        public string fish_shopConnectionString2 {
+            get {
+                return ((string)(this["fish_shopConnectionString2"]));
+            }
+        }
     }
 }

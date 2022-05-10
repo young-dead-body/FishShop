@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -75,7 +76,7 @@ namespace FishShop
             panel4.Visible = false;
             panel3.Visible = true;
             int kolvo = 0;
-            if (comboBox1.SelectedIndex == -1){
+            if (comboBox1.SelectedIndex == -1) {
                 kolvo = 1;
             }
             else {
@@ -153,7 +154,7 @@ namespace FishShop
             loadPartners();
         }
 
-        private void loadPartners() 
+        private void loadPartners()
         {
             MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {table}", conSales);
             DataSet dstFish_Shop = new DataSet("fish_shop");
@@ -211,7 +212,7 @@ namespace FishShop
                     panel5.Visible = true;
                     label5.Text = $"Вы выбрали {typeData}";
                     label6.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-                break;
+                    break;
 
                 case "Выбрать":
                     comboBox1.Items.Clear();
@@ -231,15 +232,15 @@ namespace FishShop
                     {
                         MessageBox.Show("Вы выбрали пустую строку! В следующий раз будьте отснорожнее.", "Упс...");
                     }
-                break;
+                    break;
                 case "Изменить":
                     panel5.Visible = true;
 
                     label5.Text = $"Вы выбрали {typeData}";
                     button8.Text = "Изменить";
                     label6.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-                break;
-            }      
+                    break;
+            }
         }
 
         int rowsCount;
@@ -252,7 +253,7 @@ namespace FishShop
         private void button5_Click(object sender, EventArgs e)
         {
             dataGridView2.Rows.RemoveAt(rowsCount);
-        }         
+        }
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -273,13 +274,13 @@ namespace FishShop
                 int oldQuantity = Convert.ToInt32(command.ExecuteScalar().ToString());
                 int buyerQuantity = Convert.ToInt32(quantityProducts);
                 //==============================================
-                
+
                 if (oldQuantity < buyerQuantity)
                 {
                     MessageBox.Show($"Извините, покупка товара {nameProducts} в количестве: {buyerQuantity} штук невозможна. " +
                         $"Так как на складу находится лишь: {oldQuantity} штук", "Ошибочка вышла...");
                 }
-                else 
+                else
                 {
                     String queryUpdateQuantity = $"UPDATE PRODUCTS SET QUANTITY = {oldQuantity - buyerQuantity} " +
                                     $"WHERE ID_PRODUCT = {PK_PRODUCTS[k].ToString()}";
@@ -293,15 +294,15 @@ namespace FishShop
                         commandUpdate.ExecuteNonQuery();
                     }
                     //======================================
-                        String kolvo = dataGridView2.Rows[k].Cells[1].Value.ToString();
-                        String date = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
-                        String name_product = dataSale[k * 3].ToString();
-                        String type_product = dataSale[k * 3 + 1].ToString();
-                        String marka_product = dataSale[k * 3 + 2].ToString();
-                        String insertQuery = $"INSERT INTO SALEPRODUCTS  (name_product, type_product, marka_product, data_sale, kolvo_saleproduct) " +
-                            $"VALUES ('{name_product}', '{type_product}', '{marka_product}', '{date}', {kolvo});";
-                        commandUpdate = new MySqlCommand(insertQuery, conSales);
-                        commandUpdate.ExecuteNonQuery();
+                    String kolvo = dataGridView2.Rows[k].Cells[1].Value.ToString();
+                    String date = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+                    String name_product = dataSale[k * 3].ToString();
+                    String type_product = dataSale[k * 3 + 1].ToString();
+                    String marka_product = dataSale[k * 3 + 2].ToString();
+                    String insertQuery = $"INSERT INTO SALEPRODUCTS  (name_product, type_product, marka_product, data_sale, kolvo_saleproduct) " +
+                        $"VALUES ('{name_product}', '{type_product}', '{marka_product}', '{date}', {kolvo});";
+                    commandUpdate = new MySqlCommand(insertQuery, conSales);
+                    commandUpdate.ExecuteNonQuery();
                     //======================================
                 }
             }
@@ -330,7 +331,7 @@ namespace FishShop
         private void добавитьПокупателяToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InteractionDB interactionDB = new InteractionDB("ФИО",
-                                                            "Номер телефона", 
+                                                            "Номер телефона",
                                                             conSales);
             interactionDB.ShowDialog();
         }
@@ -373,7 +374,7 @@ namespace FishShop
                     panel5.Visible = false;
                 }
             }
-            else if (button8.Text == "Изменить") 
+            else if (button8.Text == "Изменить")
             {
                 var result = MessageBox.Show($"Вы уверены что хотите изменить информацию о данном {typeUpdateData}?", "Проверка на изменение",
                                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -392,7 +393,7 @@ namespace FishShop
             }
         }
 
-        private void updateInformation() 
+        private void updateInformation()
         {
             ArrayList list = new ArrayList();
             InteractionDB interactionDB;
@@ -577,6 +578,35 @@ namespace FishShop
             dataGridView1.Columns[2].Width = 100;
             dataGridView1.Columns[3].HeaderText = "Дата регистрации";
             dataGridView1.Columns[3].Width = 90;
+        }
+
+        private void отчетToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM entranceproducts", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"entranceproducts");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"entranceproducts"];
+            dataGridView1.DataSource = dataTable;
+
+            //////////
+            String querySQL = $"SELECT COUNT(*) FROM entranceproducts";
+            MySqlCommand command = new MySqlCommand(querySQL, conSales);
+            int count = Convert.ToInt32(command.ExecuteScalar().ToString());
+            /////////
+            ForReportRepository.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                int ID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                string Name = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string TYPE = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string Marka = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string Date = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                ForReportRepository.GetForReports(ID, Name, TYPE, Marka, Date);         
+            }
+
+            Form1 form1 = new Form1("поступило");
+            form1.Show();
         }
     }
 }
