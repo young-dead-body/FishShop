@@ -622,7 +622,7 @@ namespace FishShop
             String sqlTable = "entranceproducts";
             loadReport(sqlTable, 1, 2, 3, 4, 5);
 
-            ReportForm form1 = new ReportForm("Отчет о поступлении товаров");
+            ReportForm form1 = new ReportForm("Отчет о поступлении товаров", this);
             form1.Show();
         }
 
@@ -631,7 +631,7 @@ namespace FishShop
             String sqlTable = "saleproducts";
             loadReport(sqlTable,1, 2, 3, 4, 5);
 
-            ReportForm form1 = new ReportForm("Отчет о продаже товаров");
+            ReportForm form1 = new ReportForm("Отчет о продаже товаров", this);
             form1.Show();
         }
 
@@ -667,7 +667,7 @@ namespace FishShop
             String sqlTable = "products";
             loadReport(sqlTable,3,4,5,6,2);
 
-            ReportForm form1 = new ReportForm("Отчет о наличии товаров");
+            ReportForm form1 = new ReportForm("Отчет о наличии товаров", this);
             form1.Show();
         }
 
@@ -711,6 +711,131 @@ namespace FishShop
             dataGridView1.Columns[4].Width = 90;
             dataGridView1.Columns[5].HeaderText = "Количество";
             dataGridView1.Columns[5].Width = 90;
+        }
+
+        private void учетПродажToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Visible = false;
+            panel2.Visible = true;
+            panel1.Visible = false;
+            panel3.Visible = false;
+            panel4.Visible = false;
+            panel5.Visible = false;
+            dataGridView1.Width = 670;
+            Width = 800;
+            button2.Location = new System.Drawing.Point(700, 310);
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM saleproducts", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"saleproducts");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"saleproducts"];
+            dataGridView1.DataSource = dataTable;
+
+            dataGridView1.Columns[0].HeaderText = "Номер";
+            dataGridView1.Columns[0].Width = 70;
+            dataGridView1.Columns[1].HeaderText = "Наименование";
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].HeaderText = "Вид";
+            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[3].HeaderText = "Марка";
+            dataGridView1.Columns[3].Width = 90;
+            dataGridView1.Columns[4].HeaderText = "Дата продажи";
+            dataGridView1.Columns[4].Width = 90;
+            dataGridView1.Columns[5].HeaderText = "Количество";
+            dataGridView1.Columns[5].Width = 90;
+        }
+
+        public void reportParser1(string sqlTable, string vid, string marka, string ondate, string offdate) 
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {sqlTable} " +
+                $"WHERE (TYPE_PRODUCT LIKE '%{vid}%') AND (MARKA_PRODUCT LIKE '%{marka}%')" +
+                $"AND (data_entrance BETWEEN '{ondate}' AND '{offdate}')", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{sqlTable}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{sqlTable}"];
+            dataGridView1.DataSource = dataTable;
+
+            //////////
+            String querySQL = $"SELECT COUNT(*) FROM {sqlTable} " +
+                $"WHERE (TYPE_PRODUCT LIKE '%{vid}%') AND (MARKA_PRODUCT LIKE '%{marka}%')" +
+                $"AND (data_entrance BETWEEN '{ondate}' AND '{offdate}')";
+            MySqlCommand command = new MySqlCommand(querySQL, conSales);
+            int count = Convert.ToInt32(command.ExecuteScalar().ToString());
+            /////////
+            ForReportRepository.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                int ID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                string Name = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string TYPE = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string Marka = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string Date = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                int Kolvo = Convert.ToInt32(dataGridView1.Rows[i].Cells[5].Value);
+                ForReportRepository.GetForReports(ID, Name, TYPE, Marka, Date, Kolvo);
+            }
+        }
+
+        public void reportParser2(string sqlTable, string vid, string marka, string ondate, string offdate)
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {sqlTable} " +
+                $"WHERE (TYPE_PRODUCT LIKE '%{vid}%') AND (MARKA_PRODUCT LIKE '%{marka}%')" +
+                $"AND (data_sale BETWEEN '{ondate}' AND '{offdate}')", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{sqlTable}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{sqlTable}"];
+            dataGridView1.DataSource = dataTable;
+
+            //////////
+            String querySQL = $"SELECT COUNT(*) FROM {sqlTable} " +
+                $"WHERE (TYPE_PRODUCT LIKE '%{vid}%') AND (MARKA_PRODUCT LIKE '%{marka}%')" +
+                $"AND (data_sale BETWEEN '{ondate}' AND '{offdate}')";
+            MySqlCommand command = new MySqlCommand(querySQL, conSales);
+            int count = Convert.ToInt32(command.ExecuteScalar().ToString());
+            /////////
+            ForReportRepository.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                int ID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                string Name = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                string TYPE = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                string Marka = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string Date = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                int Kolvo = Convert.ToInt32(dataGridView1.Rows[i].Cells[5].Value);
+                ForReportRepository.GetForReports(ID, Name, TYPE, Marka, Date, Kolvo);
+            }
+        }
+
+        public void reportParser3(string sqlTable, string vid, string marka, string ondate, string offdate)
+        {
+            MySqlDataAdapter data = new MySqlDataAdapter($"SELECT * FROM {sqlTable} " +
+                $"WHERE (TYPE_PRODUCT LIKE '%{vid}%') AND (MARKA_PRODUCT LIKE '%{marka}%')" +
+                $"AND (DATE_PRODUCT BETWEEN '{ondate}' AND '{offdate}')", conSales);
+            DataSet dstFish_Shop = new DataSet("fish_shop");
+            data.Fill(dstFish_Shop, $"{sqlTable}");
+            DataTable dataTable;
+            dataTable = dstFish_Shop.Tables[$"{sqlTable}"];
+            dataGridView1.DataSource = dataTable;
+
+            //////////3,4,5,6,2
+            String querySQL = $"SELECT COUNT(*) FROM {sqlTable} " +
+                $"WHERE (TYPE_PRODUCT LIKE '%{vid}%') AND (MARKA_PRODUCT LIKE '%{marka}%')" +
+                $"AND (DATE_PRODUCT BETWEEN '{ondate}' AND '{offdate}')";
+            MySqlCommand command = new MySqlCommand(querySQL, conSales);
+            int count = Convert.ToInt32(command.ExecuteScalar().ToString());
+            /////////
+            ForReportRepository.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                int ID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                string Name = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                string TYPE = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                string Marka = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                string Date = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                int Kolvo = Convert.ToInt32(dataGridView1.Rows[i].Cells[2].Value);
+                ForReportRepository.GetForReports(ID, Name, TYPE, Marka, Date, Kolvo);
+            }
         }
     }
 }

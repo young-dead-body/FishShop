@@ -75,6 +75,7 @@ namespace FishShop
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.просмотрПоступленийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.учетПродажToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -186,7 +187,8 @@ namespace FishShop
             this.добавитьТоварToolStripMenuItem,
             this.добавитьПаToolStripMenuItem,
             this.взаимодействиеСПокупателямиToolStripMenuItem,
-            this.просмотрПоступленийToolStripMenuItem});
+            this.просмотрПоступленийToolStripMenuItem,
+            this.учетПродажToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -488,6 +490,13 @@ namespace FishShop
             this.просмотрПоступленийToolStripMenuItem.Text = "Просмотр поступлений";
             this.просмотрПоступленийToolStripMenuItem.Click += new System.EventHandler(this.просмотрПоступленийToolStripMenuItem_Click);
             // 
+            // учетПродажToolStripMenuItem
+            // 
+            this.учетПродажToolStripMenuItem.Name = "учетПродажToolStripMenuItem";
+            this.учетПродажToolStripMenuItem.Size = new System.Drawing.Size(322, 26);
+            this.учетПродажToolStripMenuItem.Text = "Учет продаж";
+            this.учетПродажToolStripMenuItem.Click += new System.EventHandler(this.учетПродажToolStripMenuItem_Click);
+            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -561,5 +570,6 @@ namespace FishShop
         private ToolStripMenuItem отчетПоНаличиюТоваровToolStripMenuItem;
         private ComboBox comboBox2;
         private ToolStripMenuItem просмотрПоступленийToolStripMenuItem;
+        private ToolStripMenuItem учетПродажToolStripMenuItem;
     }
 }
