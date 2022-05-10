@@ -153,6 +153,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="fish_shopDataSet2.xsc">
       <DependentUpon>fish_shopDataSet2.xsd</DependentUpon>
@@ -183,6 +184,7 @@
   <ItemGroup>
     <Content Include="loader.xml" />
     <Content Include="PrimaryKey.xml" />
+    <None Include="Resources\Fishing_rod_Fish_Closeup_521030_2048x1152.jpg" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

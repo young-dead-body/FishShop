@@ -31,6 +31,7 @@ namespace FishShop
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportForm));
             this.buyerDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.entranceproductsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
@@ -66,13 +67,14 @@ namespace FishShop
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 1;
             // 
-            // Form1
+            // ReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ReportForm";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.buyerDataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.entranceproductsBindingSource)).EndInit();
