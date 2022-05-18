@@ -46,21 +46,21 @@ namespace FishShop
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
+            this.fileToolStripMenuItem.Text = "Файл";
             // 
             // aboutTheProgramToolStripMenuItem
             // 
             this.aboutTheProgramToolStripMenuItem.Name = "aboutTheProgramToolStripMenuItem";
-            this.aboutTheProgramToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
-            this.aboutTheProgramToolStripMenuItem.Text = "About the program";
+            this.aboutTheProgramToolStripMenuItem.Size = new System.Drawing.Size(118, 26);
+            this.aboutTheProgramToolStripMenuItem.Text = "О программе";
             this.aboutTheProgramToolStripMenuItem.Click += new System.EventHandler(this.aboutTheProgramToolStripMenuItem_Click);
             // 
             // button1

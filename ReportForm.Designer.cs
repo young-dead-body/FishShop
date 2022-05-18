@@ -68,9 +68,9 @@ namespace FishShop
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.reportViewer1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 422);
+            this.panel1.Size = new System.Drawing.Size(800, 420);
             this.panel1.TabIndex = 0;
             // 
             // panel2
@@ -204,7 +204,7 @@ namespace FishShop
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(800, 422);
+            this.reportViewer1.Size = new System.Drawing.Size(800, 420);
             this.reportViewer1.TabIndex = 1;
             // 
             // menuStrip1
@@ -215,7 +215,7 @@ namespace FishShop
             this.closeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -224,8 +224,8 @@ namespace FishShop
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сортироватьToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
+            this.fileToolStripMenuItem.Text = "Файл";
             // 
             // сортироватьToolStripMenuItem
             // 
@@ -233,7 +233,7 @@ namespace FishShop
             this.конкретныеВидыИМаркиПоДатеToolStripMenuItem,
             this.поДатеToolStripMenuItem});
             this.сортироватьToolStripMenuItem.Name = "сортироватьToolStripMenuItem";
-            this.сортироватьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.сортироватьToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
             this.сортироватьToolStripMenuItem.Text = "Сортировать";
             this.сортироватьToolStripMenuItem.Click += new System.EventHandler(this.сортироватьToolStripMenuItem_Click);
             // 
@@ -254,8 +254,8 @@ namespace FishShop
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
-            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
+            this.closeToolStripMenuItem.Text = "Закрыть";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // ReportForm

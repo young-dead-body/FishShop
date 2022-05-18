@@ -69,9 +69,9 @@ namespace FishShop
             this.label2.Location = new System.Drawing.Point(14, 86);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 17);
+            this.label2.Size = new System.Drawing.Size(57, 17);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Password";
+            this.label2.Text = "Пароль";
             // 
             // label1
             // 
@@ -79,9 +79,9 @@ namespace FishShop
             this.label1.Location = new System.Drawing.Point(14, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 17);
+            this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Login";
+            this.label1.Text = "Логин";
             // 
             // textBox2
             // 
